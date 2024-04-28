@@ -107,7 +107,7 @@ public final class GHRTCommandReadme extends CLPAbstractCommand
     final GHRTWorkflow workflow)
   {
     return URI.create(
-      "https://github.com/io7m/%s/actions?query=workflow%%3A%s"
+      "https://www.github.com/io7m-com/%s/actions?query=workflow%%3A%s"
         .formatted(names.shortName(), workflow.name())
     );
   }
@@ -117,7 +117,7 @@ public final class GHRTCommandReadme extends CLPAbstractCommand
     final GHRTWorkflow workflow)
   {
     return URI.create(
-      "https://img.shields.io/github/actions/workflow/status/io7m/%s/%s.yml"
+      "https://img.shields.io/github/actions/workflow/status/io7m-com/%s/%s.yml"
         .formatted(names.shortName(), workflow.name())
     );
   }
