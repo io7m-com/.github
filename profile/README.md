@@ -32,7 +32,6 @@
 |![idstore_gui](profile/idstore_gui.png)|[idstore_gui](https://www.github.com/io7m/idstore_gui)|GUI for idstore.|
 |![idstore_trafficgen](profile/idstore_trafficgen.png)|[idstore_trafficgen](https://www.github.com/io7m/idstore_trafficgen)|Traffic generator for idstore.|
 |![ieee754b16](profile/ieee754b16.png)|[ieee754b16](https://www.io7m.com/software/ieee754b16/)|Functions for converting to/from IEEE754 binary16 values.|
-|![immutables-vavr](profile/immutables-vavr.png)|[immutables-vavr](https://github.com/immutables/immutables-vavr)|A set of Immutables encodings for Vavr.|
 |![jaccord](profile/jaccord.png)|[jaccord](https://github.com/io7m/jaccord)|Java library to assist with musical analysis.|
 |![jade](profile/jade.png)|[jade](https://www.io7m.com/software/jade/)|Java application directory etiquette.|
 |![jaffirm](profile/jaffirm.png)|[jaffirm](https://www.io7m.com/software/jaffirm/)|Simple and fast contract checking.|
