@@ -19,10 +19,8 @@
 |![checkstyle_rules](profile/checkstyle_rules.png)|[checkstyle_rules](https://www.io7m.com/software/checkstyle_rules/)|Common Checkstyle rules for io7m projects.|
 |![chione](profile/chione.png)|[chione](https://www.github.com/io7m/chione/)|Opinionated builds of Apache Artemis for small-scale deployments.|
 |![cxbutton](profile/cxbutton.png)|[cxbutton](https://www.io7m.com/software/cxbutton/)|Customizable embossed CSS buttons.|
-|![datepicker](profile/datepicker.png)|[datepicker](https://github.com/irradia/one.irradia.datepicker)|Minimalist Android date picker.|
 |![digal](profile/digal.png)|[digal](https://www.io7m.com/software/digal/)|Java FX rotary dials.|
 |![dixmont](profile/dixmont.png)|[dixmont](https://www.io7m.com/software/dixmont/)|Dixmont Jackson extensions.|
-|![epubsquash](profile/epubsquash.png)|[epubsquash](https://github.com/AULFA/epubsquash)|Java EPUB size reduction API and tools.|
 |![ervilla](profile/ervilla.png)|[ervilla](https://www.io7m.com/software/ervilla/)|JUnit 5 Podman container creation.|
 |![ethermaker](profile/ethermaker.png)|[ethermaker](https://www.io7m.com/software/ethermaker/)|Ethernet MAC address generator.|
 |![flail](profile/flail.png)|[flail](https://www.io7m.com/software/flail/)|DNS server stress testing tool.|
