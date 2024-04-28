@@ -26,7 +26,6 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
-import java.text.MessageFormat;
 
 import static com.io7m.claypot.core.CLPCommandType.Status.SUCCESS;
 import static java.nio.file.StandardOpenOption.CREATE;

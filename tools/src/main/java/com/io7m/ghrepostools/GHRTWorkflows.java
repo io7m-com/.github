@@ -19,9 +19,9 @@ package com.io7m.ghrepostools;
 
 import java.util.List;
 
-import static com.io7m.ghrepostools.GHRTJDKDistribution.TEMURIN;
 import static com.io7m.ghrepostools.GHRTJDKCategory.CURRENT;
 import static com.io7m.ghrepostools.GHRTJDKCategory.LTS;
+import static com.io7m.ghrepostools.GHRTJDKDistribution.TEMURIN;
 import static com.io7m.ghrepostools.GHRTPlatform.LINUX;
 import static com.io7m.ghrepostools.GHRTPlatform.WINDOWS;
 
