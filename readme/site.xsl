@@ -14,7 +14,7 @@
     <xsl:for-each select="si:Package[@status='ACTIVE']">
       <xsl:sort select="@name"/>
       <xsl:if test="not(@external)">
-        <xsl:value-of select="concat('|![',@name,'](readme/',@name,'.png)|[',@name,'](',@site,')|',@description,'|')"/><xsl:text>&#x000a;</xsl:text>
+        <xsl:value-of select="concat('|![',@name,'](profile/readme/',@name,'.png)|[',@name,'](',@site,')|',@description,'|')"/><xsl:text>&#x000a;</xsl:text>
       </xsl:if>
     </xsl:for-each>
     <xsl:text>&#x000a;</xsl:text>
