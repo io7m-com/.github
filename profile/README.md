@@ -89,6 +89,7 @@
 |![medrina](profile/medrina.png)|[medrina](https://www.io7m.com/software/medrina)|Role-based mandatory access control.|
 |![mime2045](profile/mime2045.png)|[mime2045](https://www.io7m.com/software/mime2045/)|RFC 2045 MIME type parsing.|
 |![minisite](profile/minisite.png)|[minisite](https://www.io7m.com/software/minisite/)|Tiny software project static site generator.|
+|![northpike](profile/northpike.png)|[northpike](https://www.github.com/io7m/northpike/)|Continuous integration server.|
 |![oakleaf](profile/oakleaf.png)|[oakleaf](https://www.io7m.com/software/oakleaf/)|Minimalist article schema and stylesheet.|
 |![oatfield](profile/oatfield.png)|[oatfield](https://www.io7m.com/software/oatfield/)|OSGi bundle I/O and analysis.|
 |![oxicoco](profile/oxicoco.png)|[oxicoco](https://github.com/io7m/oxicoco)|Embeddable Java IRC server component.|
