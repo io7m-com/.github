@@ -32,6 +32,15 @@
     </xsl:for-each>
   </xsl:template>
 
+  <xsl:template match="si:Software" mode="checklist">
+    <xsl:for-each select="si:Package[@status='ACTIVE']">
+      <xsl:sort select="@name"/>
+      <xsl:if test="not(@external)">
+        <xsl:value-of select="concat('- [ ] ',@name)"/><xsl:text>&#x000a;</xsl:text>
+      </xsl:if>
+    </xsl:for-each>
+  </xsl:template>
+
   <xsl:template match="si:Site">
     <xsl:result-document href="table.md"
                          indent="no"
@@ -43,6 +52,12 @@
                          indent="no"
                          method="text">
       <xsl:apply-templates select="si:Software" mode="shell"/>
+    </xsl:result-document>
+
+    <xsl:result-document href="checklist.txt"
+                         indent="no"
+                         method="text">
+      <xsl:apply-templates select="si:Software" mode="checklist"/>
     </xsl:result-document>
   </xsl:template>
 
