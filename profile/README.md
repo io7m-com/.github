@@ -110,6 +110,7 @@
 |![tavella](profile/tavella.png)|[tavella](https://www.io7m.com/software/tavella/)|Podman Java interface.|
 |![timehack6435126](profile/timehack6435126.png)|[timehack6435126](https://www.io7m.com/software/timehack6435126/)|JVM high-resolution timer bug workaround.|
 |![trasco](profile/trasco.png)|[trasco](https://www.io7m.com/software/trasco/)|SQL database schema revision system.|
+|![usq](profile/usq.png)|[usq](https://www.github.com/io7m/usq/)|Unsupervised persistent queues.|
 |![verdant](profile/verdant.png)|[verdant](https://www.io7m.com/software/verdant/)|Binary protocol for HTTP endpoint version announcements.|
 |![verona](profile/verona.png)|[verona](https://www.io7m.com/software/verona/)|Semantic versioning types.|
 |![wendover](profile/wendover.png)|[wendover](https://www.io7m.com/software/wendover/)|Java NIO channel tools.|
