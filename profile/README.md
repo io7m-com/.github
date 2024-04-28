@@ -4,6 +4,7 @@
 |-|-|-|
 |![abstand](profile/abstand.png)|[abstand](https://www.io7m.com/software/abstand/)|Interval trees.|
 |![anethum](profile/anethum.png)|[anethum](https://www.io7m.com/software/anethum/)|Generic parser API specification.|
+|![aradine](profile/aradine.png)|[aradine](https://www.github.com/io7m/aradine/)|Modular programmable synthesis.|
 |![blackthorne](profile/blackthorne.png)|[blackthorne](https://www.io7m.com/software/blackthorne/)|Functional streaming XML data extraction.|
 |![bodyrecomp](profile/bodyrecomp.png)|[bodyrecomp](https://www.io7m.com/software/bodyrecomp/)|Body recomposition tools.|
 |![boxwood](profile/boxwood.png)|[boxwood](https://www.io7m.com/software/boxwood/)|EPUB parser.|
