@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=y -jar target/com.io7m.ghtools-0.0.1-SNAPSHOT-main.jar "$@"

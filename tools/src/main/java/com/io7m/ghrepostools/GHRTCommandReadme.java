@@ -17,35 +17,68 @@
 
 package com.io7m.ghrepostools;
 
-import com.beust.jcommander.Parameters;
-import com.io7m.claypot.core.CLPAbstractCommand;
-import com.io7m.claypot.core.CLPCommandContextType;
+import com.io7m.quarrel.core.QCommandContextType;
+import com.io7m.quarrel.core.QCommandMetadata;
+import com.io7m.quarrel.core.QCommandStatus;
+import com.io7m.quarrel.core.QCommandType;
+import com.io7m.quarrel.core.QParameterNamedType;
+import com.io7m.quarrel.core.QStringType;
 
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static com.io7m.claypot.core.CLPCommandType.Status.SUCCESS;
 
-@Parameters(commandDescription = "Generate a README file.")
-public final class GHRTCommandReadme extends CLPAbstractCommand
+public final class GHRTCommandReadme implements QCommandType
 {
+  private final QCommandMetadata metadata;
+
   /**
    * Construct a command.
-   *
-   * @param inContext The command context
    */
 
-  public GHRTCommandReadme(
-    final CLPCommandContextType inContext)
+  public GHRTCommandReadme()
   {
-    super(inContext);
+    this.metadata = new QCommandMetadata(
+      "readme",
+      new QStringType.QConstant("Generate a README file."),
+      Optional.empty()
+    );
+  }
+
+  private static URI workflowURI(
+    final GHRTProjectName names,
+    final GHRTWorkflow workflow)
+  {
+    return URI.create(
+      "https://www.github.com/io7m-com/%s/actions?query=workflow%%3A%s"
+        .formatted(names.shortName(), workflow.name())
+    );
+  }
+
+  private static URI shieldsURI(
+    final GHRTProjectName names,
+    final GHRTWorkflow workflow)
+  {
+    return URI.create(
+      "https://img.shields.io/github/actions/workflow/status/io7m-com/%s/%s.yml"
+        .formatted(names.shortName(), workflow.name())
+    );
   }
 
   @Override
-  protected Status executeActual()
+  public List<QParameterNamedType<?>> onListNamedParameters()
+  {
+    return List.of();
+  }
+
+  @Override
+  public QCommandStatus onExecute(
+    final QCommandContextType context)
     throws Exception
   {
     final var names =
@@ -99,32 +132,12 @@ public final class GHRTCommandReadme extends CLPAbstractCommand
       System.out.println(Files.readString(extra));
     }
 
-    return SUCCESS;
-  }
-
-  private static URI workflowURI(
-    final GHRTProjectName names,
-    final GHRTWorkflow workflow)
-  {
-    return URI.create(
-      "https://www.github.com/io7m-com/%s/actions?query=workflow%%3A%s"
-        .formatted(names.shortName(), workflow.name())
-    );
-  }
-
-  private static URI shieldsURI(
-    final GHRTProjectName names,
-    final GHRTWorkflow workflow)
-  {
-    return URI.create(
-      "https://img.shields.io/github/actions/workflow/status/io7m-com/%s/%s.yml"
-        .formatted(names.shortName(), workflow.name())
-    );
+    return QCommandStatus.SUCCESS;
   }
 
   @Override
-  public String name()
+  public QCommandMetadata metadata()
   {
-    return "readme";
+    return this.metadata;
   }
 }

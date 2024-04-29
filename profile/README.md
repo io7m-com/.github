@@ -41,6 +41,7 @@
 |![jbssio](profile/jbssio.png)|[jbssio](https://www.io7m.com/software/jbssio/)|Java bytestream structural I/O.|
 |![jcamera](profile/jcamera.png)|[jcamera](https://io7m.github.io/jcamera/)|Camera implementations for 3D simulations.|
 |![jcathinone](profile/jcathinone.png)|[jcathinone](https://github.com/io7m/jcathinone)|Apache Artemis message directory spooler.|
+|![jcip](profile/jcip.png)|[jcip](https://www.io7m.com/software/jcip)|Clean-room JCIP annotations.|
 |![jcolorspace](profile/jcolorspace.png)|[jcolorspace](https://www.io7m.com/software/jcolorspace/)|Color space conversions.|
 |![jcoords](profile/jcoords.png)|[jcoords](https://www.io7m.com/software/jcoords/)|Functions for specifying and converting between coordinate spaces.|
 |![jcoronado](profile/jcoronado.png)|[jcoronado](https://www.io7m.com/software/jcoronado/)|Type-safe Vulkan wrapper.|

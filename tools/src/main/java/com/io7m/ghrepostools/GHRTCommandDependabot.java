@@ -17,41 +17,51 @@
 
 package com.io7m.ghrepostools;
 
-import com.beust.jcommander.Parameters;
-import com.io7m.claypot.core.CLPAbstractCommand;
-import com.io7m.claypot.core.CLPCommandContextType;
+import com.io7m.quarrel.core.QCommandContextType;
+import com.io7m.quarrel.core.QCommandMetadata;
+import com.io7m.quarrel.core.QCommandStatus;
+import com.io7m.quarrel.core.QCommandType;
+import com.io7m.quarrel.core.QParameterNamedType;
+import com.io7m.quarrel.core.QStringType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 
-import static com.io7m.claypot.core.CLPCommandType.Status.SUCCESS;
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 import static java.nio.file.StandardOpenOption.WRITE;
 
-@Parameters(commandDescription = "Generate dependabot files.")
-public final class GHRTCommandDependabot extends CLPAbstractCommand
+public final class GHRTCommandDependabot implements QCommandType
 {
-  private static final Logger LOG =
-    LoggerFactory.getLogger(GHRTCommandDependabot.class);
+  private QCommandMetadata metadata;
 
   /**
    * Construct a command.
-   *
-   * @param inContext The command context
    */
 
-  public GHRTCommandDependabot(
-    final CLPCommandContextType inContext)
+  public GHRTCommandDependabot()
   {
-    super(inContext);
+    this.metadata = new QCommandMetadata(
+      "dependabot",
+      new QStringType.QConstant("Generate dependabot files."),
+      Optional.empty()
+    );
   }
 
   @Override
-  protected Status executeActual()
+  public List<QParameterNamedType<?>> onListNamedParameters()
+  {
+    return List.of();
+  }
+
+  @Override
+  public QCommandStatus onExecute(
+    final QCommandContextType context)
     throws Exception
   {
     final var names =
@@ -69,7 +79,7 @@ public final class GHRTCommandDependabot extends CLPAbstractCommand
       path = path.resolve("dependabot-is-custom");
 
       if (Files.exists(path)) {
-        return SUCCESS;
+        return QCommandStatus.SUCCESS;
       }
     }
 
@@ -86,16 +96,17 @@ public final class GHRTCommandDependabot extends CLPAbstractCommand
 
       Files.writeString(
         path,
-        resources.getString("dependabotTemplate")
+        resources.getString("dependabotTemplate"),
+        options
       );
     }
 
-    return SUCCESS;
+    return QCommandStatus.SUCCESS;
   }
 
   @Override
-  public String name()
+  public QCommandMetadata metadata()
   {
-    return "dependabot";
+    return this.metadata;
   }
 }

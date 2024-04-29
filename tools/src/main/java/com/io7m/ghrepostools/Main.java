@@ -16,11 +16,9 @@
 
 package com.io7m.ghrepostools;
 
-import com.io7m.claypot.core.CLPApplicationConfiguration;
-import com.io7m.claypot.core.CLPCommandConstructorType;
-import com.io7m.claypot.core.CLPCommandType;
-import com.io7m.claypot.core.Claypot;
-import com.io7m.claypot.core.ClaypotType;
+import com.io7m.quarrel.core.QApplication;
+import com.io7m.quarrel.core.QApplicationMetadata;
+import com.io7m.quarrel.core.QApplicationType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,8 +26,6 @@ import java.net.URI;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.SortedMap;
-import java.util.stream.Stream;
 
 /**
  * Main command line entry point.
@@ -37,10 +33,12 @@ import java.util.stream.Stream;
 
 public final class Main implements Runnable
 {
-  private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+  private static final Logger LOG =
+    LoggerFactory.getLogger(Main.class);
 
   private final String[] args;
-  private final ClaypotType claypot;
+  private final QApplicationType application;
+  private final int exitCode;
 
   /**
    * The main entry point.
@@ -54,25 +52,30 @@ public final class Main implements Runnable
     this.args =
       Objects.requireNonNull(inArgs, "Command line arguments");
 
-    final List<CLPCommandConstructorType> commands =
-      List.of(
-        GHRTCommandDependabot::new,
-        GHRTCommandGenDepChanges::new,
-        GHRTCommandReadme::new,
-        GHRTCommandShowDepCommit::new,
-        GHRTCommandWorkflows::new
+    final var metadata =
+      new QApplicationMetadata(
+        "ghrepostools",
+        "com.io7m.ghrepostools",
+        "0.0.1",
+        "8ccbaad780c02805263297ad4b7dce4589a0c3ec",
+        "GH Repository Tools",
+        Optional.of(URI.create("https://www.github.com/io7m-com/.github"))
       );
 
-    final var configuration =
-      CLPApplicationConfiguration.builder()
-        .setLogger(LOG)
-        .setProgramName("gh-repos-tools")
-        .setCommands(commands)
-        .setDocumentationURI(URI.create(
-          "https://github.com/io7m/gh-repos-tools"))
-        .build();
+    final var builder =
+      QApplication.builder(metadata);
 
-    this.claypot = Claypot.create(configuration);
+    builder.addCommand(new GHRTCommandDependabot());
+    builder.addCommand(new GHRTCommandGenDepChanges());
+    builder.addCommand(new GHRTCommandReadme());
+    builder.addCommand(new GHRTCommandShowDepCommit());
+    builder.addCommand(new GHRTCommandShowDependencies());
+    builder.addCommand(new GHRTCommandShowDependencyGraph());
+    builder.addCommand(new GHRTCommandShowInTopologicalOrder());
+    builder.addCommand(new GHRTCommandWorkflows());
+
+    this.application = builder.build();
+    this.exitCode = 0;
   }
 
   /**
@@ -109,33 +112,13 @@ public final class Main implements Runnable
 
   public int exitCode()
   {
-    return this.claypot.exitCode();
+    return this.exitCode;
   }
 
   @Override
   public void run()
   {
-    this.claypot.execute(this.args);
-  }
-
-  /**
-   * @return The names of the available commands
-   */
-
-  public Stream<String> commandNames()
-  {
-    return this.commands()
-      .keySet()
-      .stream();
-  }
-
-  /**
-   * @return The available commands
-   */
-
-  public SortedMap<String, CLPCommandType> commands()
-  {
-    return this.claypot.commands();
+    this.application.run(LOG, List.of(this.args));
   }
 
   @Override
@@ -145,14 +128,5 @@ public final class Main implements Runnable
       "[Main 0x%s]",
       Long.toUnsignedString(System.identityHashCode(this), 16)
     );
-  }
-
-  /**
-   * @return The exception that caused the exit
-   */
-
-  public Optional<Exception> exitCause()
-  {
-    return this.claypot.exitCause();
   }
 }

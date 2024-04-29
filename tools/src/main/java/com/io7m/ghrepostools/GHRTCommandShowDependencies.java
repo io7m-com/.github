@@ -22,29 +22,34 @@ import com.io7m.quarrel.core.QCommandMetadata;
 import com.io7m.quarrel.core.QCommandStatus;
 import com.io7m.quarrel.core.QCommandType;
 import com.io7m.quarrel.core.QParameterNamed01;
+import com.io7m.quarrel.core.QParameterNamed0N;
 import com.io7m.quarrel.core.QParameterNamedType;
 import com.io7m.quarrel.core.QStringType;
 
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
+import java.util.TreeSet;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-
-public final class GHRTCommandShowDepCommit implements QCommandType
+public final class GHRTCommandShowDependencies implements QCommandType
 {
   private final QCommandMetadata metadata;
 
-  private static final QParameterNamed01<Path> OUTPUT =
-    new QParameterNamed01<>(
-      "--output",
+  private static final QParameterNamed0N<Path> INPUT =
+    new QParameterNamed0N<>(
+      "--pom-file",
       List.of(),
-      new QStringType.QConstant("The output file."),
+      new QStringType.QConstant("The input POM file."),
+      List.of(),
+      Path.class
+    );
+
+  private static final QParameterNamed01<Path> SEARCH_ROOT =
+    new QParameterNamed01<>(
+      "--pom-search",
+      List.of(),
+      new QStringType.QConstant("The root directory for searching for POM files."),
       Optional.empty(),
       Path.class
     );
@@ -53,11 +58,11 @@ public final class GHRTCommandShowDepCommit implements QCommandType
    * Construct a command.
    */
 
-  public GHRTCommandShowDepCommit()
+  public GHRTCommandShowDependencies()
   {
     this.metadata = new QCommandMetadata(
-      "show-dependency-commit",
-      new QStringType.QConstant("Generate a commit message for dependency updates."),
+      "show-dependencies",
+      new QStringType.QConstant("List dependencies in a POM file."),
       Optional.empty()
     );
   }
@@ -65,7 +70,7 @@ public final class GHRTCommandShowDepCommit implements QCommandType
   @Override
   public List<QParameterNamedType<?>> onListNamedParameters()
   {
-    return List.of(OUTPUT);
+    return List.of(INPUT, SEARCH_ROOT);
   }
 
   @Override
@@ -73,49 +78,38 @@ public final class GHRTCommandShowDepCommit implements QCommandType
     final QCommandContextType context)
     throws Exception
   {
-    final PrintStream outputWriter;
-    if (context.parameterValue(OUTPUT).isPresent()) {
-      final var path =
-        context.parameterValue(OUTPUT).orElseThrow();
-      outputWriter =
-        new PrintStream(Files.newOutputStream(path), true, UTF_8);
-    } else {
-      outputWriter = System.out;
+    final var files = new TreeSet<Path>();
+    for (final var file : context.parameterValues(INPUT)) {
+      files.add(file.toAbsolutePath());
     }
 
-    final var u =
-      GHRTCommandShowDepCommit.class.getResource(
-        "/com/io7m/ghrepostools/versions-plain.xslt");
-
-    try (var s = u.openStream()) {
-      final var transformers =
-        TransformerFactory.newInstance();
-      final var transformer =
-        transformers.newTransformer(new StreamSource(s));
-      transformer.transform(
-        new StreamSource("target/use-latest-releases.xml"),
-        new StreamResult(outputWriter)
-      );
-    } catch (final Exception e) {
-      // Don't care
-    }
-
-    try {
-      try (var s = u.openStream()) {
-        final var transformers =
-          TransformerFactory.newInstance();
-        final var transformer =
-          transformers.newTransformer(new StreamSource(s));
-        transformer.transform(
-          new StreamSource("target/update-properties.xml"),
-          new StreamResult(outputWriter)
-        );
+    final var rootOpt = context.parameterValue(SEARCH_ROOT);
+    if (rootOpt.isPresent()) {
+      final var searchRoot = rootOpt.orElseThrow();
+      try (var walk = Files.walk(searchRoot)) {
+        walk.filter(f -> "pom.xml".equals(f.getFileName().toString()))
+          .map(Path::toAbsolutePath)
+          .forEach(files::add);
       }
-    } catch (final Exception e) {
-      // Don't care
     }
 
-    System.out.println();
+    final var dependencies = new TreeSet<GHRTPomIdentifier>();
+    for (final var file : files) {
+      dependencies.addAll(
+        GHRTPomDependencies.pomDependencies(file)
+          .dependencies()
+      );
+    }
+
+    final var output = context.output();
+    for (final var dependency : dependencies) {
+      output.printf(
+        "%s:%s%n",
+        dependency.groupName(),
+        dependency.artifactName()
+      );
+    }
+    output.flush();
     return QCommandStatus.SUCCESS;
   }
 

@@ -17,10 +17,13 @@
 
 package com.io7m.ghrepostools;
 
-import com.beust.jcommander.Parameter;
-import com.beust.jcommander.Parameters;
-import com.io7m.claypot.core.CLPAbstractCommand;
-import com.io7m.claypot.core.CLPCommandContextType;
+import com.io7m.quarrel.core.QCommandContextType;
+import com.io7m.quarrel.core.QCommandMetadata;
+import com.io7m.quarrel.core.QCommandStatus;
+import com.io7m.quarrel.core.QCommandType;
+import com.io7m.quarrel.core.QParameterNamed01;
+import com.io7m.quarrel.core.QParameterNamedType;
+import com.io7m.quarrel.core.QStringType;
 
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
@@ -28,35 +31,54 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 
-import static com.io7m.claypot.core.CLPCommandType.Status.SUCCESS;
 import static java.nio.charset.StandardCharsets.UTF_8;
 
-@Parameters(commandDescription = "Generate a series of shell commands for changelog.")
-public final class GHRTCommandGenDepChanges extends CLPAbstractCommand
+public final class GHRTCommandGenDepChanges implements QCommandType
 {
-  @Parameter(required = false, names = "--output")
-  private Path output;
+  private static final QParameterNamed01<Path> OUTPUT =
+    new QParameterNamed01<>(
+      "--output",
+      List.of(),
+      new QStringType.QConstant("The output file."),
+      Optional.empty(),
+      Path.class
+    );
+
+  private final QCommandMetadata metadata;
 
   /**
    * Construct a command.
-   *
-   * @param inContext The command context
    */
 
-  public GHRTCommandGenDepChanges(
-    final CLPCommandContextType inContext)
+  public GHRTCommandGenDepChanges()
   {
-    super(inContext);
+    this.metadata = new QCommandMetadata(
+      "generate-changelog",
+      new QStringType.QConstant("Generate a series of shell commands for changelog."),
+      Optional.empty()
+    );
   }
 
   @Override
-  protected Status executeActual()
+  public List<QParameterNamedType<?>> onListNamedParameters()
+  {
+    return List.of(OUTPUT);
+  }
+
+  @Override
+  public QCommandStatus onExecute(
+    final QCommandContextType context)
     throws Exception
   {
     final PrintStream outputWriter;
-    if (this.output != null) {
-      outputWriter = new PrintStream(Files.newOutputStream(this.output), true, UTF_8);
+    if (context.parameterValue(OUTPUT).isPresent()) {
+      final var path =
+        context.parameterValue(OUTPUT).orElseThrow();
+      outputWriter =
+        new PrintStream(Files.newOutputStream(path), true, UTF_8);
     } else {
       outputWriter = System.out;
     }
@@ -94,12 +116,12 @@ public final class GHRTCommandGenDepChanges extends CLPAbstractCommand
     }
 
     System.out.println();
-    return SUCCESS;
+    return QCommandStatus.SUCCESS;
   }
 
   @Override
-  public String name()
+  public QCommandMetadata metadata()
   {
-    return "generate-changelog";
+    return this.metadata;
   }
 }
