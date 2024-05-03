@@ -41,7 +41,7 @@
 |![jbssio](profile/jbssio.png)|[jbssio](https://www.io7m.com/software/jbssio/)|Java bytestream structural I/O.|
 |![jcamera](profile/jcamera.png)|[jcamera](https://io7m.github.io/jcamera/)|Camera implementations for 3D simulations.|
 |![jcathinone](profile/jcathinone.png)|[jcathinone](https://github.com/io7m/jcathinone)|Apache Artemis message directory spooler.|
-|![jcip](profile/jcip.png)|[jcip](https://www.io7m.com/software/jcip)|Clean-room JCIP annotations.|
+|![jcip](profile/jcip.png)|[jcip](https://www.io7m.com/software/jcip/)|Clean-room JCIP annotations.|
 |![jcolorspace](profile/jcolorspace.png)|[jcolorspace](https://www.io7m.com/software/jcolorspace/)|Color space conversions.|
 |![jcoords](profile/jcoords.png)|[jcoords](https://www.io7m.com/software/jcoords/)|Functions for specifying and converting between coordinate spaces.|
 |![jcoronado](profile/jcoronado.png)|[jcoronado](https://www.io7m.com/software/jcoronado/)|Type-safe Vulkan wrapper.|
@@ -73,7 +73,6 @@
 |![jserial](profile/jserial.png)|[jserial](https://www.io7m.com/software/jserial/)|Serial number arithmetic.|
 |![jspatial](profile/jspatial.png)|[jspatial](https://www.io7m.com/software/jspatial/)|Spatial data structures.|
 |![jspiel](profile/jspiel.png)|[jspiel](https://www.io7m.com/software/jspiel/)|Java RIFF I/O.|
-|![jstructural](profile/jstructural.png)|[jstructural](https://io7m.github.io/jstructural)|Java implementation of the structural document language.|
 |![jsx](profile/jsx.png)|[jsx](https://www.io7m.com/software/jsx/)|S-expression parser.|
 |![jsycamore](profile/jsycamore.png)|[jsycamore](https://github.com/io7m/jsycamore)|OpenGL GUI library.|
 |![jtensors](profile/jtensors.png)|[jtensors](https://www.io7m.com/software/jtensors/)|Vector/matrix math package.|
@@ -91,8 +90,6 @@
 |![mime2045](profile/mime2045.png)|[mime2045](https://www.io7m.com/software/mime2045/)|RFC 2045 MIME type parsing.|
 |![minisite](profile/minisite.png)|[minisite](https://www.io7m.com/software/minisite/)|Tiny software project static site generator.|
 |![northpike](profile/northpike.png)|[northpike](https://www.github.com/io7m/northpike/)|Continuous integration server.|
-|![oakleaf](profile/oakleaf.png)|[oakleaf](https://www.io7m.com/software/oakleaf/)|Minimalist article schema and stylesheet.|
-|![oatfield](profile/oatfield.png)|[oatfield](https://www.io7m.com/software/oatfield/)|OSGi bundle I/O and analysis.|
 |![oxicoco](profile/oxicoco.png)|[oxicoco](https://github.com/io7m/oxicoco)|Embeddable Java IRC server component.|
 |![pallene](profile/pallene.png)|[pallene](https://www.io7m.com/software/pallene/)|An ultra-minimal single-file static web server.|
 |![percentpass](profile/percentpass.png)|[percentpass](https://www.io7m.com/software/percentpass/)|Percent-passing extension for JUnit 5 tests.|
