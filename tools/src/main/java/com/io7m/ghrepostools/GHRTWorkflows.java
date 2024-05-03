@@ -32,6 +32,9 @@ public final class GHRTWorkflows
 
   }
 
+  public static int JDK_CURRENT = 22;
+  public static int JDK_LTS = 21;
+
   public List<GHRTWorkflow> workflows()
   {
     return List.of(
@@ -39,28 +42,32 @@ public final class GHRTWorkflows
         LINUX,
         TEMURIN,
         CURRENT,
-        22,
+        JDK_CURRENT,
+        false,
         false
       ),
       new GHRTWorkflow(
         LINUX,
         TEMURIN,
         LTS,
-        21,
+        JDK_LTS,
+        true,
         true
       ),
       new GHRTWorkflow(
         WINDOWS,
         TEMURIN,
         CURRENT,
-        22,
+        JDK_CURRENT,
+        false,
         false
       ),
       new GHRTWorkflow(
         WINDOWS,
         TEMURIN,
         LTS,
-        21,
+        JDK_LTS,
+        false,
         false
       )
     );

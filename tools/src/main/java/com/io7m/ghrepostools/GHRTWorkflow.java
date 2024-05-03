@@ -21,10 +21,16 @@ public record GHRTWorkflow(
   GHRTJDKDistribution jdkDistribution,
   GHRTJDKCategory jdkCategory,
   int jdkVersion,
-  boolean coverage)
+  boolean coverage,
+  boolean deploy)
 {
   public String name()
   {
-    return String.format("main.%s.%s.%s", platform.lowerName(), jdkDistribution.lowerName(), jdkCategory.lowerName());
+    return String.format(
+      "main.%s.%s.%s",
+      this.platform.lowerName(),
+      this.jdkDistribution.lowerName(),
+      this.jdkCategory.lowerName()
+    );
   }
 }

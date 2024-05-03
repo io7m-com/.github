@@ -20,6 +20,14 @@
 | JVM | Platform | Status |
 |-----|----------|--------|]]></entry>
 
+  <!--                                                 -->
+  <!-- The main workflow executed on all platforms.    -->
+  <!--                                                 -->
+  <!-- {0}: Workflow name                              -->
+  <!-- {1}: Runner image name (ubuntu-latest, etc)     -->
+  <!-- {2}: Java version (21, etc)                     -->
+  <!-- {3}: Java distribution (temurin, etc)           -->
+  <!-- {4}: Project short name (jeucreader, etc)       -->
   <entry key="workflowTemplate"><![CDATA[name: {0}
 
 on:
@@ -33,19 +41,31 @@ jobs:
     runs-on: {1}
     steps:
       - uses: actions/checkout@v4
+
       - name: JDK
         uses: actions/setup-java@v4
         with:
           java-version: {2}
           distribution: {3}
+
+      - name: Collect project version
+        id: project_version
+        run: java .github/workflows/Tools.java ShowProjectVersion pom.xml >> "$GITHUB_OUTPUT"
+
+      - name: Collect project snapshot
+        id: project_is_snapshot
+        run: java .github/workflows/Tools.java ShowProjectIsSnapshot pom.xml >> "$GITHUB_OUTPUT"
+
       - name: Build
-        run: mvn --errors clean verify site
+        run: mvn --batch-mode --strict-checksums --errors clean verify site
+
       - name: Upload test logs
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: test-logs
-          path: ./com.io7m.{4}.tests/target/surefire-reports]]></entry>
+          path: ./com.io7m.{4}.tests/target/surefire-reports
+]]></entry>
 
   <entry key="coverageTemplate"><![CDATA[
       - name: Coverage
@@ -53,6 +73,54 @@ jobs:
         with:
           token: $'{{' secrets.CODECOV_TOKEN '}}'
           file: com.io7m.{0}.tests/target/site/jacoco-aggregate/jacoco.xml]]></entry>
+
+  <entry key="deployTemplate"><![CDATA[
+
+      - name: Deploy snapshot
+        if: '${{' steps.project_is_snapshot.outputs.IO7M_PROJECT_VERSION_IS_SNAPSHOT == ''true'' '}}'
+        env:
+          MAVEN_CENTRAL_USERNAME: $'{{' secrets.MAVEN_CENTRAL_USERNAME '}}'
+          MAVEN_CENTRAL_PASSWORD: $'{{' secrets.MAVEN_CENTRAL_PASSWORD '}}'
+        run: .github/workflows/deploy-snapshot.sh
+]]></entry>
+
+  <!--                                                 -->
+  <!-- The main workflow executed to deploy releases.  -->
+  <!--                                                 -->
+  <!-- {0}: Workflow name                              -->
+  <!-- {1}: Runner image name (ubuntu-latest, etc)     -->
+  <!-- {2}: Java version (21, etc)                     -->
+  <!-- {3}: Java distribution (temurin, etc)           -->
+  <!-- {4}: Project short name (jeucreader, etc)       -->
+  <entry key="workflowDeployTemplate"><![CDATA[name: {0}
+
+on:
+  push:
+    tags: [ com.io7m.{4}-* ]
+
+jobs:
+  build:
+    runs-on: {1}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: {2}
+          distribution: {3}
+
+      - name: Import signing key
+        env:
+          PGP_SIGNING_KEY: $'{{' secrets.PGP_SIGNING_KEY '}}'
+        run: echo "$'{'PGP_SIGNING_KEY'}'" | gpg --import
+
+      - name: Deploy release
+        env:
+          MAVEN_CENTRAL_USERNAME: $'{{' secrets.MAVEN_CENTRAL_USERNAME '}}'
+          MAVEN_CENTRAL_PASSWORD: $'{{' secrets.MAVEN_CENTRAL_PASSWORD '}}'
+        run: .github/workflows/deploy-release.sh
+]]></entry>
 
   <entry key="dependabotTemplate"><![CDATA[
 version: 2

@@ -99,6 +99,15 @@
   </dependencies>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
+        <directory>src/main/java-embedded</directory>
+      </resource>
+    </resources>
+
     <plugins>
       <!-- Produce command-line onejar -->
       <plugin>

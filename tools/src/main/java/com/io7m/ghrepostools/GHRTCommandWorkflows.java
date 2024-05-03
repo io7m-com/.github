@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
+import java.nio.file.attribute.PosixFilePermissions;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
@@ -128,10 +129,135 @@ public final class GHRTCommandWorkflows implements QCommandType
             );
           }
 
+          if (workflow.deploy()) {
+            output.append(
+              MessageFormat.format(
+                resources.getString("deployTemplate"),
+                workflow.platform().imageName()
+              )
+            );
+          }
+
           output.newLine();
           output.flush();
         }
       }
+    }
+
+    {
+      var path = Path.of("");
+      path = path.resolve(".github");
+      path = path.resolve("workflows");
+
+      Files.createDirectories(path);
+
+      final var options = new OpenOption[]{
+        WRITE, TRUNCATE_EXISTING, CREATE
+      };
+
+      final var filePath =
+        path.resolve("Tools.java");
+
+      LOG.info("writing {}", filePath);
+
+      try (var out = Files.newOutputStream(filePath, options)) {
+        try (var in = GHRTCommandWorkflows.class
+          .getResourceAsStream("/com/io7m/ghrepostools/embedded/Tools.java")) {
+          in.transferTo(out);
+          out.flush();
+        }
+      }
+    }
+
+    {
+      var path = Path.of("");
+      path = path.resolve(".github");
+      path = path.resolve("workflows");
+
+      Files.createDirectories(path);
+
+      final var options = new OpenOption[]{
+        WRITE, TRUNCATE_EXISTING, CREATE
+      };
+
+      final var filePath =
+        path.resolve("deploy.linux.temurin.lts.yml");
+
+      LOG.info("writing {}", filePath);
+
+      try (var output =
+             Files.newBufferedWriter(filePath, options)) {
+        output.append(
+          MessageFormat.format(
+            resources.getString("workflowDeployTemplate"),
+            "deploy.linux.temurin.lts",
+            GHRTPlatform.LINUX.imageName(),
+            Integer.valueOf(GHRTWorkflows.JDK_LTS),
+            "'" + GHRTJDKDistribution.TEMURIN.lowerName() + "'",
+            names.shortName()
+          )
+        );
+      }
+    }
+
+    {
+      var path = Path.of("");
+      path = path.resolve(".github");
+      path = path.resolve("workflows");
+
+      Files.createDirectories(path);
+
+      final var options = new OpenOption[]{
+        WRITE, TRUNCATE_EXISTING, CREATE
+      };
+
+      final var filePath =
+        path.resolve("deploy-snapshot.sh");
+
+      LOG.info("writing {}", filePath);
+
+      try (var out = Files.newOutputStream(filePath, options)) {
+        try (var in = GHRTCommandWorkflows.class
+          .getResourceAsStream("/com/io7m/ghrepostools/deploy-snapshot.sh")) {
+          in.transferTo(out);
+          out.flush();
+        }
+      }
+
+      Files.setPosixFilePermissions(
+        filePath,
+        PosixFilePermissions.fromString("rwx------")
+      );
+    }
+
+    {
+      var path = Path.of("");
+      path = path.resolve(".github");
+      path = path.resolve("workflows");
+
+      Files.createDirectories(path);
+
+      final var options = new OpenOption[]{
+        WRITE, TRUNCATE_EXISTING, CREATE
+      };
+
+      final var filePath =
+        path.resolve("deploy-release.sh");
+
+      LOG.info("writing {}", filePath);
+
+      try (var out = Files.newOutputStream(filePath, options)) {
+        try (var in = GHRTCommandWorkflows.class
+          .getResourceAsStream("/com/io7m/ghrepostools/deploy-release.sh")) {
+          in.transferTo(out);
+          out.flush();
+        }
+      }
+
+      Files.setPosixFilePermissions(
+        filePath,
+        PosixFilePermissions.fromString("rwx------")
+      );
     }
 
     return QCommandStatus.SUCCESS;
