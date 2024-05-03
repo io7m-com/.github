@@ -1,3 +1,13 @@
 #!/bin/sh
 
-exec java -Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=y -jar target/com.io7m.ghtools-0.0.1-SNAPSHOT-main.jar "$@"
+if [ -z "${GHTOOLS_HOME}" ]
+then
+  echo "GHTOOLS_HOME is unset" 1>&2
+  exit 1
+fi
+
+exec /usr/bin/env java \
+${GHTOOLS_JAVA_OPTIONS} \
+-Xdebug -Xrunjdwp:server=y,transport=dt_socket,address=4000,suspend=y \
+-jar "${GHTOOLS_HOME}/com.io7m.ghtools.jar" \
+"$@"
