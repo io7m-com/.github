@@ -41,6 +41,8 @@ jobs:
     runs-on: {1}
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: JDK
         uses: actions/setup-java@v4
@@ -103,6 +105,8 @@ jobs:
     runs-on: {1}
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: JDK
         uses: actions/setup-java@v4
