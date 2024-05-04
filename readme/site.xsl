@@ -12,7 +12,8 @@
   <xsl:template match="c:Works">
     <xsl:text>| |Project|Description|&#x000a;</xsl:text>
     <xsl:text>|-|-|-|&#x000a;</xsl:text>
-    <xsl:for-each select="c:Work">
+
+    <xsl:for-each select=".//c:Work">
       <xsl:sort select="@Name"/>
       <xsl:if test="c:GroupAssignment[@Name='com.io7m.core']">
         <xsl:variable name="Description" select="dc:description"/>
@@ -27,7 +28,7 @@
     <xsl:text>#!/bin/sh&#x000a;</xsl:text>
     <xsl:text>&#x000a;</xsl:text>
 
-    <xsl:for-each select="c:Work">
+    <xsl:for-each select=".//c:Work">
       <xsl:sort select="@Name"/>
       <xsl:if test="c:GroupAssignment[@Name='com.io7m.core']">
         <xsl:value-of select="concat('cp ${BRANDING_HOME}/output/',@Name,'/icon32.png ',@Name,'.png')"/><xsl:text>&#x000a;</xsl:text>

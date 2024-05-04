@@ -59,6 +59,7 @@
 |![jnfp](profile/jnfp.png)|[jnfp](https://www.github.com/io7m-com/jnfp)|Normalized fixed-point value functions.|
 |![jnoisetype](profile/jnoisetype.png)|[jnoisetype](https://www.github.com/io7m-com/jnoisetype)|SoundFontⓡ I/O.|
 |![jobj](profile/jobj.png)|[jobj](https://www.github.com/io7m-com/jobj)|Java Wavefront OBJ parser.|
+|![jodist](profile/jodist.png)|[jodist](https://www.github.com/io7m-com/jodist)|Coffee-flavoured source code generation.|
 |![jorchard](profile/jorchard.png)|[jorchard](https://www.github.com/io7m-com/jorchard)|Mutable rose-tree types.|
 |![jpita](profile/jpita.png)|[jpita](https://www.github.com/io7m-com/jpita)|Simple text alignment algorithms.|
 |![jpplib](profile/jpplib.png)|[jpplib](https://www.github.com/io7m-com/jpplib)|An improved fork of the unmaintained jpplib package.|
@@ -72,6 +73,7 @@
 |![jsay](profile/jsay.png)|[jsay](https://www.github.com/io7m-com/jsay)|Tiny JMS text message sender.|
 |![jserial](profile/jserial.png)|[jserial](https://www.github.com/io7m-com/jserial)|Serial number arithmetic.|
 |![jspatial](profile/jspatial.png)|[jspatial](https://www.github.com/io7m-com/jspatial)|Spatial data structures.|
+|![jspearmint](profile/jspearmint.png)|[jspearmint](https://www.github.com/io7m-com/jspearmint)|SPIR-V toolkit.|
 |![jspiel](profile/jspiel.png)|[jspiel](https://www.github.com/io7m-com/jspiel)|Java RIFF I/O.|
 |![jsx](profile/jsx.png)|[jsx](https://www.github.com/io7m-com/jsx)|S-expression parser.|
 |![jsycamore](profile/jsycamore.png)|[jsycamore](https://www.github.com/io7m-com/jsycamore)|OpenGL GUI library.|
@@ -90,6 +92,7 @@
 |![mime2045](profile/mime2045.png)|[mime2045](https://www.github.com/io7m-com/mime2045)|RFC 2045 MIME type parsing.|
 |![minisite](profile/minisite.png)|[minisite](https://www.github.com/io7m-com/minisite)|Tiny software project static site generator.|
 |![northpike](profile/northpike.png)|[northpike](https://www.github.com/io7m-com/northpike)|Continuous integration server.|
+|![northpike.packaging](profile/northpike.packaging.png)|[northpike.packaging](https://www.github.com/io7m-com/northpike.packaging)|Platform-specific packaging for Northpike.|
 |![oxicoco](profile/oxicoco.png)|[oxicoco](https://www.github.com/io7m-com/oxicoco)|Embeddable Java IRC server component.|
 |![pallene](profile/pallene.png)|[pallene](https://www.github.com/io7m-com/pallene)|An ultra-minimal single-file static web server.|
 |![percentpass](profile/percentpass.png)|[percentpass](https://www.github.com/io7m-com/percentpass)|Percent-passing extension for JUnit 5 tests.|

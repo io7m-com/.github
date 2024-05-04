@@ -6,4 +6,4 @@ then
   exit 1
 fi
 
-./saxon.sh -xsl:site.xsl -s:${SITE_XML}
+./saxon.sh -xi -xsl:site.xsl -s:${SITE_XML}
