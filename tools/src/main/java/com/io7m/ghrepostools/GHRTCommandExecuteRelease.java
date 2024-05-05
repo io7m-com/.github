@@ -389,6 +389,11 @@ public final class GHRTCommandExecuteRelease implements QCommandType
     LOG.info("You should now: ");
     LOG.info("  cd {} && git push --tags", projectDirectory);
     LOG.info("  cd {} && git push --all", projectDirectory);
+    LOG.info(
+      "  cd {} && ghtools push-io7m-site --project {}",
+      projectDirectory.getParent(),
+      project
+    );
     return QCommandStatus.SUCCESS;
   }
 
