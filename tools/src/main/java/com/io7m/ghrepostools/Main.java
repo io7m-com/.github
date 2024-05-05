@@ -72,6 +72,7 @@ public final class Main implements Runnable
     builder.addCommand(new GHRTCommandShowDependencies());
     builder.addCommand(new GHRTCommandShowDependencyGraph());
     builder.addCommand(new GHRTCommandShowInTopologicalOrder());
+    builder.addCommand(new GHRTCommandUpdateChangelog());
     builder.addCommand(new GHRTCommandWorkflows());
 
     this.application = builder.build();

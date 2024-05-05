@@ -25,6 +25,12 @@
     <io7m.java.targetJavaVersion>21</io7m.java.targetJavaVersion>
     <checkstyle.skip>true</checkstyle.skip>
     <mdep.analyze.skip>true</mdep.analyze.skip>
+
+    <!-- io7m dependencies. -->
+    <com.io7m.changelog.version>5.0.0-beta0002</com.io7m.changelog.version>
+
+    <!-- Third-party dependencies. -->
+    <jgit.version>6.6.1.202309021850-r</jgit.version>
   </properties>
 
   <licenses>
@@ -86,6 +92,7 @@
       <artifactId>com.io7m.quarrel.core</artifactId>
       <version>1.6.0</version>
     </dependency>
+
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
@@ -95,6 +102,35 @@
       <groupId>org.jgrapht</groupId>
       <artifactId>jgrapht-core</artifactId>
       <version>1.5.2</version>
+    </dependency>
+
+    <!-- Changelog. -->
+    <dependency>
+      <groupId>com.io7m.changelog</groupId>
+      <artifactId>com.io7m.changelog.core</artifactId>
+      <version>${com.io7m.changelog.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.io7m.changelog</groupId>
+      <artifactId>com.io7m.changelog.text.vanilla</artifactId>
+      <version>${com.io7m.changelog.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.io7m.changelog</groupId>
+      <artifactId>com.io7m.changelog.xml.vanilla</artifactId>
+      <version>${com.io7m.changelog.version}</version>
+    </dependency>
+
+    <!-- Git repository support. -->
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit</artifactId>
+      <version>${jgit.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.jgit</groupId>
+      <artifactId>org.eclipse.jgit.archive</artifactId>
+      <version>${jgit.version}</version>
     </dependency>
   </dependencies>
 
@@ -124,6 +160,24 @@
               <minimizeJar>false</minimizeJar>
               <shadedClassifierName>main</shadedClassifierName>
               <shadedArtifactAttached>true</shadedArtifactAttached>
+              <filters>
+                <filter>
+                  <artifact>*:*</artifact>
+                  <excludes>
+                    <exclude>LICENSE</exclude>
+                    <exclude>META-INF/*.DSA</exclude>
+                    <exclude>META-INF/*.RSA</exclude>
+                    <exclude>META-INF/*.SF</exclude>
+                    <exclude>META-INF/versions/**</exclude>
+                    <exclude>NOTICE</exclude>
+                    <exclude>OSGI-OPT/**</exclude>
+                    <exclude>about.html</exclude>
+                    <exclude>img/**</exclude>
+                    <exclude>org/osgi/resource/**</exclude>
+                    <exclude>readme.md</exclude>
+                  </excludes>
+                </filter>
+              </filters>
               <transformers>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
@@ -135,6 +189,11 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>io.github.zlika</groupId>
+        <artifactId>reproducible-build-maven-plugin</artifactId>
       </plugin>
 
       <!-- Generate a site -->
