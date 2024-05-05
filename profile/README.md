@@ -39,6 +39,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![idstore_gui](profile/idstore_gui.png)|[idstore_gui](https://www.github.com/io7m-com/idstore_gui)|GUI for idstore.|
 |![idstore_trafficgen](profile/idstore_trafficgen.png)|[idstore_trafficgen](https://www.github.com/io7m-com/idstore_trafficgen)|Traffic generator for idstore.|
 |![ieee754b16](profile/ieee754b16.png)|[ieee754b16](https://www.github.com/io7m-com/ieee754b16)|Functions for converting to/from IEEE754 binary16 values.|
+|![immutables-style](profile/immutables-style.png)|[immutables-style](https://www.github.com/io7m-com/immutables-style)|Immutables.org annotations for io7m projects.|
 |![jaccord](profile/jaccord.png)|[jaccord](https://www.github.com/io7m-com/jaccord)|Java library to assist with musical analysis.|
 |![jade](profile/jade.png)|[jade](https://www.github.com/io7m-com/jade)|Java application directory etiquette.|
 |![jaffirm](profile/jaffirm.png)|[jaffirm](https://www.github.com/io7m-com/jaffirm)|Simple and fast contract checking.|
