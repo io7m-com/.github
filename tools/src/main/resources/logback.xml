@@ -10,6 +10,9 @@
     <target>System.out</target>
   </appender>
 
+  <logger name="com.io7m.changelog"
+          level="DEBUG"/>
+
   <logger name="org.eclipse.jgit"
           level="INFO"/>
 
