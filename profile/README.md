@@ -1,5 +1,11 @@
 ![io7m.com](profile/readme.jpg?raw=true)
 
+### Issues
+
+File organization-wide issues at the [organization](https://www.github.com/io7m-com/.github) repository.
+
+### Projects
+
 | |Project|Description|
 |-|-|-|
 |![abstand](profile/abstand.png)|[abstand](https://www.github.com/io7m-com/abstand)|Interval trees.|
