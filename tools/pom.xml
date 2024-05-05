@@ -104,6 +104,13 @@
       <version>1.5.2</version>
     </dependency>
 
+    <!-- Templating -->
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>2.3.32</version>
+    </dependency>
+
     <!-- Changelog. -->
     <dependency>
       <groupId>com.io7m.changelog</groupId>

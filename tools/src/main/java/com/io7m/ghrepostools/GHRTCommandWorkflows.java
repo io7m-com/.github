@@ -17,6 +17,8 @@
 
 package com.io7m.ghrepostools;
 
+import com.io7m.ghrepostools.templating.GHRTTemplateService;
+import com.io7m.ghrepostools.templating.GHRTWorkflowModel;
 import com.io7m.quarrel.core.QCommandContextType;
 import com.io7m.quarrel.core.QCommandMetadata;
 import com.io7m.quarrel.core.QCommandStatus;
@@ -42,6 +44,9 @@ public final class GHRTCommandWorkflows implements QCommandType
 {
   private static final Logger LOG =
     LoggerFactory.getLogger(GHRTCommandWorkflows.class);
+  public static final OpenOption[] FILE_WRITE_OPTIONS = {
+    WRITE, TRUNCATE_EXISTING, CREATE
+  };
 
   private final QCommandMetadata metadata;
 
@@ -53,10 +58,10 @@ public final class GHRTCommandWorkflows implements QCommandType
   {
     this.metadata =
       new QCommandMetadata(
-      "workflows",
-      new QStringType.QConstant("Generate workflow files."),
-      Optional.empty()
-    );
+        "workflows",
+        new QStringType.QConstant("Generate workflow files."),
+        Optional.empty()
+      );
   }
 
   @Override
@@ -89,54 +94,72 @@ public final class GHRTCommandWorkflows implements QCommandType
       }
     }
 
+    var workflowDirectory = Path.of("");
+    workflowDirectory = workflowDirectory.resolve(".github");
+    workflowDirectory = workflowDirectory.resolve("workflows");
+
     {
-      var path = Path.of("");
-      path = path.resolve(".github");
-      path = path.resolve("workflows");
+      Files.createDirectories(workflowDirectory);
 
-      Files.createDirectories(path);
+      final var workflows =
+        new GHRTWorkflows()
+          .workflows();
 
-      final var options = new OpenOption[]{
-        WRITE, TRUNCATE_EXISTING, CREATE
-      };
+      final var templates =
+        GHRTTemplateService.create();
 
-      final var workflows = new GHRTWorkflows().workflows();
       for (final var workflow : workflows) {
-        final var filePath =
-          path.resolve("%s.yml".formatted(workflow.name()));
+        final var mainFile =
+          workflowDirectory.resolve("%s.yml".formatted(workflow.mainName()));
+        final var prFile =
+          workflowDirectory.resolve("%s.yml".formatted(workflow.prName()));
 
-        LOG.info("writing {}", filePath);
+        LOG.info("writing {}", mainFile);
+        LOG.info("writing {}", prFile);
 
         try (var output =
-               Files.newBufferedWriter(filePath, options)) {
-          output.append(
-            MessageFormat.format(
-              resources.getString("workflowTemplate"),
-              workflow.name(),
+               Files.newBufferedWriter(mainFile, FILE_WRITE_OPTIONS)) {
+
+          final var template =
+            templates.workflowMain();
+
+          template.process(
+            new GHRTWorkflowModel(
+              workflow.mainName(),
               workflow.platform().imageName(),
-              Integer.valueOf(workflow.jdkVersion()),
-              "'" + workflow.jdkDistribution().lowerName() + "'",
-              names.shortName()
-            )
+              Integer.toUnsignedString(workflow.jdkVersion()),
+              workflow.jdkDistribution().lowerName(),
+              names.shortName(),
+              workflow.coverage(),
+              workflow.deploy(),
+              "Push"
+            ),
+            output
           );
 
-          if (workflow.coverage()) {
-            output.append(
-              MessageFormat.format(
-                resources.getString("coverageTemplate"),
-                names.shortName()
-              )
-            );
-          }
+          output.newLine();
+          output.flush();
+        }
 
-          if (workflow.deploy()) {
-            output.append(
-              MessageFormat.format(
-                resources.getString("deployTemplate"),
-                workflow.platform().imageName()
-              )
-            );
-          }
+        try (var output =
+               Files.newBufferedWriter(prFile, FILE_WRITE_OPTIONS)) {
+
+          final var template =
+            templates.workflowMain();
+
+          template.process(
+            new GHRTWorkflowModel(
+              workflow.prName(),
+              workflow.platform().imageName(),
+              Integer.toUnsignedString(workflow.jdkVersion()),
+              workflow.jdkDistribution().lowerName(),
+              names.shortName(),
+              false,
+              false,
+              "PullRequest"
+            ),
+            output
+          );
 
           output.newLine();
           output.flush();
@@ -145,22 +168,12 @@ public final class GHRTCommandWorkflows implements QCommandType
     }
 
     {
-      var path = Path.of("");
-      path = path.resolve(".github");
-      path = path.resolve("workflows");
-
-      Files.createDirectories(path);
-
-      final var options = new OpenOption[]{
-        WRITE, TRUNCATE_EXISTING, CREATE
-      };
-
       final var filePath =
-        path.resolve("Tools.java");
+        workflowDirectory.resolve("Tools.java");
 
       LOG.info("writing {}", filePath);
 
-      try (var out = Files.newOutputStream(filePath, options)) {
+      try (var out = Files.newOutputStream(filePath, FILE_WRITE_OPTIONS)) {
         try (var in = GHRTCommandWorkflows.class
           .getResourceAsStream("/com/io7m/ghrepostools/embedded/Tools.java")) {
           in.transferTo(out);
@@ -170,23 +183,14 @@ public final class GHRTCommandWorkflows implements QCommandType
     }
 
     {
-      var path = Path.of("");
-      path = path.resolve(".github");
-      path = path.resolve("workflows");
-
-      Files.createDirectories(path);
-
-      final var options = new OpenOption[]{
-        WRITE, TRUNCATE_EXISTING, CREATE
-      };
-
       final var filePath =
-        path.resolve("deploy.linux.temurin.lts.yml");
+        workflowDirectory.resolve("deploy.linux.temurin.lts.yml");
 
       LOG.info("writing {}", filePath);
 
       try (var output =
-             Files.newBufferedWriter(filePath, options)) {
+             Files.newBufferedWriter(filePath, FILE_WRITE_OPTIONS)) {
+
         output.append(
           MessageFormat.format(
             resources.getString("workflowDeployTemplate"),
@@ -201,22 +205,12 @@ public final class GHRTCommandWorkflows implements QCommandType
     }
 
     {
-      var path = Path.of("");
-      path = path.resolve(".github");
-      path = path.resolve("workflows");
-
-      Files.createDirectories(path);
-
-      final var options = new OpenOption[]{
-        WRITE, TRUNCATE_EXISTING, CREATE
-      };
-
       final var filePath =
-        path.resolve("deploy-snapshot.sh");
+        workflowDirectory.resolve("deploy-snapshot.sh");
 
       LOG.info("writing {}", filePath);
 
-      try (var out = Files.newOutputStream(filePath, options)) {
+      try (var out = Files.newOutputStream(filePath, FILE_WRITE_OPTIONS)) {
         try (var in = GHRTCommandWorkflows.class
           .getResourceAsStream("/com/io7m/ghrepostools/deploy-snapshot.sh")) {
           in.transferTo(out);
@@ -231,22 +225,12 @@ public final class GHRTCommandWorkflows implements QCommandType
     }
 
     {
-      var path = Path.of("");
-      path = path.resolve(".github");
-      path = path.resolve("workflows");
-
-      Files.createDirectories(path);
-
-      final var options = new OpenOption[]{
-        WRITE, TRUNCATE_EXISTING, CREATE
-      };
-
       final var filePath =
-        path.resolve("deploy-release.sh");
+        workflowDirectory.resolve("deploy-release.sh");
 
       LOG.info("writing {}", filePath);
 
-      try (var out = Files.newOutputStream(filePath, options)) {
+      try (var out = Files.newOutputStream(filePath, FILE_WRITE_OPTIONS)) {
         try (var in = GHRTCommandWorkflows.class
           .getResourceAsStream("/com/io7m/ghrepostools/deploy-release.sh")) {
           in.transferTo(out);

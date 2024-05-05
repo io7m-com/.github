@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 Mark Raynsford <code@io7m.com> https://www.io7m.com
+ * Copyright © 2023 Mark Raynsford <code@io7m.com> https://www.io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,33 +14,34 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.io7m.ghrepostools;
 
-public record GHRTWorkflow(
-  GHRTPlatform platform,
-  GHRTJDKDistribution jdkDistribution,
-  GHRTJDKCategory jdkCategory,
-  int jdkVersion,
-  boolean coverage,
-  boolean deploy)
+package com.io7m.ghrepostools.templating;
+
+import freemarker.template.TemplateException;
+
+import java.io.IOException;
+import java.io.Writer;
+
+/**
+ * The type of freemarker templates.
+ *
+ * @param <T> The type of template data
+ */
+
+public interface GHRTTemplateType<T extends GHRTTemplateDataModelType>
 {
-  public String mainName()
-  {
-    return String.format(
-      "main.%s.%s.%s",
-      this.platform.lowerName(),
-      this.jdkDistribution.lowerName(),
-      this.jdkCategory.lowerName()
-    );
-  }
+  /**
+   * Execute the template with the given input data.
+   *
+   * @param value  The data
+   * @param output The output writer
+   *
+   * @throws TemplateException On template errors such as missing variables
+   * @throws IOException       On I/O errors
+   */
 
-  public String prName()
-  {
-    return String.format(
-      "pr.%s.%s.%s",
-      this.platform.lowerName(),
-      this.jdkDistribution.lowerName(),
-      this.jdkCategory.lowerName()
-    );
-  }
+  void process(
+    T value,
+    Writer output)
+    throws TemplateException, IOException;
 }

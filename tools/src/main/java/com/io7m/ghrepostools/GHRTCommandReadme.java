@@ -56,7 +56,7 @@ public final class GHRTCommandReadme implements QCommandType
   {
     return URI.create(
       "https://www.github.com/io7m-com/%s/actions?query=workflow%%3A%s"
-        .formatted(names.shortName(), workflow.name())
+        .formatted(names.shortName(), workflow.mainName())
     );
   }
 
@@ -66,7 +66,7 @@ public final class GHRTCommandReadme implements QCommandType
   {
     return URI.create(
       "https://img.shields.io/github/actions/workflow/status/io7m-com/%s/%s.yml"
-        .formatted(names.shortName(), workflow.name())
+        .formatted(names.shortName(), workflow.mainName())
     );
   }
 

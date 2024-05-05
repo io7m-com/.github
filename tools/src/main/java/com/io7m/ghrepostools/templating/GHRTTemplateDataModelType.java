@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 Mark Raynsford <code@io7m.com> https://www.io7m.com
+ * Copyright © 2023 Mark Raynsford <code@io7m.com> https://www.io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,33 +14,20 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.io7m.ghrepostools;
 
-public record GHRTWorkflow(
-  GHRTPlatform platform,
-  GHRTJDKDistribution jdkDistribution,
-  GHRTJDKCategory jdkCategory,
-  int jdkVersion,
-  boolean coverage,
-  boolean deploy)
+package com.io7m.ghrepostools.templating;
+
+import java.util.Map;
+
+/**
+ * The base type of data models for templates.
+ */
+
+public interface GHRTTemplateDataModelType
 {
-  public String mainName()
-  {
-    return String.format(
-      "main.%s.%s.%s",
-      this.platform.lowerName(),
-      this.jdkDistribution.lowerName(),
-      this.jdkCategory.lowerName()
-    );
-  }
+  /**
+   * @return The data as a freemarker template hash
+   */
 
-  public String prName()
-  {
-    return String.format(
-      "pr.%s.%s.%s",
-      this.platform.lowerName(),
-      this.jdkDistribution.lowerName(),
-      this.jdkCategory.lowerName()
-    );
-  }
+  Map<String, Object> toTemplateHash();
 }
