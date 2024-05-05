@@ -32,6 +32,8 @@ import org.jgrapht.traverse.TopologicalOrderIterator;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -147,13 +149,20 @@ public final class GHRTCommandShowInTopologicalOrder implements QCommandType
       context.output();
     final var topo =
       new TopologicalOrderIterator<>(graph);
+    final var toShow =
+      new ArrayList<String>();
 
     while (topo.hasNext()) {
       final var node = topo.next();
       if (!graphPattern.matcher(node).matches()) {
         continue;
       }
-      output.println(node);
+      toShow.add(node);
+    }
+
+    Collections.reverse(toShow);
+    for (final var name : toShow) {
+      System.out.println(name);
     }
 
     output.flush();
