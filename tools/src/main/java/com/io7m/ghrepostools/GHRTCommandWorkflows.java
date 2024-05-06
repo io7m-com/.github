@@ -75,6 +75,9 @@ public final class GHRTCommandWorkflows implements QCommandType
     final QCommandContextType context)
     throws Exception
   {
+    final var templates =
+      GHRTTemplateService.create();
+
     final var names =
       GHRTProjectNames.projectName();
 
@@ -104,9 +107,6 @@ public final class GHRTCommandWorkflows implements QCommandType
       final var workflows =
         new GHRTWorkflows()
           .workflows();
-
-      final var templates =
-        GHRTTemplateService.create();
 
       for (final var workflow : workflows) {
         final var mainFile =
@@ -191,16 +191,25 @@ public final class GHRTCommandWorkflows implements QCommandType
       try (var output =
              Files.newBufferedWriter(filePath, FILE_WRITE_OPTIONS)) {
 
-        output.append(
-          MessageFormat.format(
-            resources.getString("workflowDeployTemplate"),
+        final var template =
+          templates.deployMain();
+
+        template.process(
+          new GHRTWorkflowModel(
             "deploy.linux.temurin.lts",
             GHRTPlatform.LINUX.imageName(),
-            Integer.valueOf(GHRTWorkflows.JDK_LTS),
-            "'" + GHRTJDKDistribution.TEMURIN.lowerName() + "'",
-            names.shortName()
-          )
+            Integer.toUnsignedString(GHRTWorkflows.JDK_LTS),
+            GHRTJDKDistribution.TEMURIN.lowerName(),
+            names.shortName(),
+            true,
+            true,
+            ""
+          ),
+          output
         );
+
+        output.newLine();
+        output.flush();
       }
     }
 
