@@ -89,6 +89,13 @@ public final class GHRTTemplateService
     );
   }
 
+  public GHRTTemplateType<GHRTReadmeModel> readme()
+  {
+    return new GenericTemplate<>(
+      this.findTemplate("readme")
+    );
+  }
+
   @Override
   public String toString()
   {

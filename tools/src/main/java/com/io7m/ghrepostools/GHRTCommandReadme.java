@@ -17,6 +17,8 @@
 
 package com.io7m.ghrepostools;
 
+import com.io7m.ghrepostools.templating.GHRTReadmeModel;
+import com.io7m.ghrepostools.templating.GHRTTemplateService;
 import com.io7m.quarrel.core.QCommandContextType;
 import com.io7m.quarrel.core.QCommandMetadata;
 import com.io7m.quarrel.core.QCommandStatus;
@@ -24,7 +26,9 @@ import com.io7m.quarrel.core.QCommandType;
 import com.io7m.quarrel.core.QParameterNamedType;
 import com.io7m.quarrel.core.QStringType;
 
+import java.io.PrintWriter;
 import java.net.URI;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
@@ -81,6 +85,8 @@ public final class GHRTCommandReadme implements QCommandType
     final QCommandContextType context)
     throws Exception
   {
+    final var templates =
+      GHRTTemplateService.create();
     final var names =
       GHRTProjectNames.projectName();
 
@@ -94,13 +100,20 @@ public final class GHRTCommandReadme implements QCommandType
     final var dotGroup =
       names.groupName().stream().collect(Collectors.joining("."));
 
-    System.out.println(MessageFormat.format(
-      resources.getString("readmeTemplate"),
-      dotGroup,
-      slashGroup,
-      names.projectName(),
-      names.shortName()
-    ));
+    final var javaVersion =
+      GHRTPomJavaVersion.pomJavaVersion(Paths.get("pom.xml"));
+
+    templates.readme()
+      .process(
+        new GHRTReadmeModel(
+          dotGroup,
+          names.projectName(),
+          slashGroup,
+          names.shortName(),
+          javaVersion
+        ),
+        new PrintWriter(System.out, true, StandardCharsets.UTF_8)
+      );
 
     final var workflows = new GHRTWorkflows().workflows();
     for (final var workflow : workflows) {
