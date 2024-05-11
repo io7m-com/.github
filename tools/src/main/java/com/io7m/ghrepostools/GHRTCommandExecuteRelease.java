@@ -204,6 +204,7 @@ public final class GHRTCommandExecuteRelease implements QCommandType
       Paths.get("."),
       "git",
       "clone",
+      "--recursive",
       cloneURI.toString(),
       project
     );
