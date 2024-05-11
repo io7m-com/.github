@@ -115,6 +115,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![streamtime](profile/streamtime.png)|[streamtime](https://www.github.com/io7m-com/streamtime)|Input/output stream progress tracking.|
 |![sunburst](profile/sunburst.png)|[sunburst](https://www.github.com/io7m-com/sunburst)|Asset package system.|
 |![tabla](profile/tabla.png)|[tabla](https://www.github.com/io7m-com/tabla)|Plain text table rendering.|
+|![taskrecorder](profile/taskrecorder.png)|[taskrecorder](https://www.github.com/io7m-com/taskrecorder)|UI task recorder.|
 |![tavella](profile/tavella.png)|[tavella](https://www.github.com/io7m-com/tavella)|Podman Java interface.|
 |![timehack6435126](profile/timehack6435126.png)|[timehack6435126](https://www.github.com/io7m-com/timehack6435126)|JVM high-resolution timer bug workaround.|
 |![trasco](profile/trasco.png)|[trasco](https://www.github.com/io7m-com/trasco)|SQL database schema revision system.|
