@@ -113,6 +113,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![sigiltron](profile/sigiltron.png)|[sigiltron](https://www.github.com/io7m-com/sigiltron)|Mysterious symbol generator.|
 |![smfj](profile/smfj.png)|[smfj](https://www.github.com/io7m-com/smfj)|Minimalist sequential mesh format.|
 |![streamtime](profile/streamtime.png)|[streamtime](https://www.github.com/io7m-com/streamtime)|Input/output stream progress tracking.|
+|![string-template-maven-plugin](profile/string-template-maven-plugin.png)|[string-template-maven-plugin](https://www.github.com/io7m-com/string-template-maven-plugin)|String Template Maven plugin.|
 |![sunburst](profile/sunburst.png)|[sunburst](https://www.github.com/io7m-com/sunburst)|Asset package system.|
 |![tabla](profile/tabla.png)|[tabla](https://www.github.com/io7m-com/tabla)|Plain text table rendering.|
 |![taskrecorder](profile/taskrecorder.png)|[taskrecorder](https://www.github.com/io7m-com/taskrecorder)|UI task recorder.|
