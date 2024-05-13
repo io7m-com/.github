@@ -64,7 +64,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![jmurmur](profile/jmurmur.png)|[jmurmur](https://www.github.com/io7m-com/jmurmur)|Java implementation of the Murmur hash function.|
 |![jmutnum](profile/jmutnum.png)|[jmutnum](https://www.github.com/io7m-com/jmutnum)|Trivial mutable numbers.|
 |![jnfp](profile/jnfp.png)|[jnfp](https://www.github.com/io7m-com/jnfp)|Normalized fixed-point value functions.|
-|![jnoisetype](profile/jnoisetype.png)|[jnoisetype](https://www.github.com/io7m-com/jnoisetype)|SoundFontⓡ I/O.|
+|![jnoisetype](profile/jnoisetype.png)|[jnoisetype](https://www.github.com/io7m-com/jnoisetype)|SoundFont® I/O.|
 |![jobj](profile/jobj.png)|[jobj](https://www.github.com/io7m-com/jobj)|Java Wavefront OBJ parser.|
 |![jodist](profile/jodist.png)|[jodist](https://www.github.com/io7m-com/jodist)|Coffee-flavoured source code generation.|
 |![jorchard](profile/jorchard.png)|[jorchard](https://www.github.com/io7m-com/jorchard)|Mutable rose-tree types.|
