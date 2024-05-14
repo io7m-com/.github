@@ -21,6 +21,14 @@ public enum GHRTPlatform
   WINDOWS,
   LINUX;
 
+  public GHRTCustomRunScript customRunScript()
+  {
+    return switch (this) {
+      case WINDOWS -> new GHRTCustomRunScript("build.bat");
+      case LINUX -> new GHRTCustomRunScript("build.sh");
+    };
+  }
+
   public GHRTVideoSupported videoSupported()
   {
     return switch (this) {

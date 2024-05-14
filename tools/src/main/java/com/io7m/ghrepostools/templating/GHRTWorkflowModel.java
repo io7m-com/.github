@@ -19,11 +19,14 @@ package com.io7m.ghrepostools.templating;
 
 import com.io7m.ghrepostools.GHRTActionVersions;
 import com.io7m.ghrepostools.GHRTCoverageEnabled;
+import com.io7m.ghrepostools.GHRTCustomRunScript;
+import com.io7m.ghrepostools.GHRTCustomRunScriptEnabled;
 import com.io7m.ghrepostools.GHRTDeployEnabled;
 import com.io7m.ghrepostools.GHRTVideoRecordingEnabled;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public record GHRTWorkflowModel(
   GHRTActionVersions actionVersions,
@@ -36,6 +39,7 @@ public record GHRTWorkflowModel(
   GHRTCoverageEnabled coverage,
   GHRTDeployEnabled deploy,
   GHRTVideoRecordingEnabled videoRecordingEnabled,
+  Optional<GHRTCustomRunScript> customRunScript,
   String sourceEvent)
   implements GHRTTemplateDataModelType
 {
@@ -50,6 +54,10 @@ public record GHRTWorkflowModel(
     m.put("actionsPodmanLoginVersion", v.podmanLoginVersion());
     m.put("actionsSetupJavaVersion", v.setupJavaVersion());
     m.put("actionsUploadArtifactVersion", v.uploadArtifactVersion());
+
+    this.customRunScript.ifPresent(script -> {
+      m.put("customRunScript", script.name());
+    });
 
     m.put("coverage", this.coverage());
     m.put("deploy", this.deploy());

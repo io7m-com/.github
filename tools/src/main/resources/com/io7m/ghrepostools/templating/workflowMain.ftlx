@@ -50,6 +50,9 @@ jobs:
         with:
           name: test-video
           path: test-suite.webm
+[#elseif customRunScript??]
+      - name: Build
+        run: ./.github/workflows/${customRunScript}
 [#else]
       - name: Build
         run: mvn --batch-mode --strict-checksums --errors clean verify site

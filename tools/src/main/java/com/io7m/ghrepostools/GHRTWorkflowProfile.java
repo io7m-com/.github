@@ -24,7 +24,8 @@ import java.util.stream.Stream;
 
 public record GHRTWorkflowProfile(
   String name,
-  GHRTVideoRecordingEnabled videoRecordingEnabled)
+  GHRTVideoRecordingEnabled videoRecordingEnabled,
+  GHRTCustomRunScriptEnabled customRunScriptEnabled)
 {
   public GHRTWorkflowProfile
   {
@@ -36,15 +37,26 @@ public record GHRTWorkflowProfile(
   {
     return Stream.of(
       core(),
-      screenRecorded()
+      screenRecorded(),
+      customRun()
     ).collect(Collectors.toMap(c -> c.name, c -> c));
+  }
+
+  private static GHRTWorkflowProfile customRun()
+  {
+    return new GHRTWorkflowProfile(
+      "CustomRunScript",
+      GHRTVideoRecordingEnabled.VIDEO_RECORDING_DISABLED,
+      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_ENABLED
+    );
   }
 
   public static GHRTWorkflowProfile screenRecorded()
   {
     return new GHRTWorkflowProfile(
       "ScreenRecorded",
-      GHRTVideoRecordingEnabled.VIDEO_RECORDING_ENABLED
+      GHRTVideoRecordingEnabled.VIDEO_RECORDING_ENABLED,
+      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_DISABLED
     );
   }
 
@@ -52,7 +64,8 @@ public record GHRTWorkflowProfile(
   {
     return new GHRTWorkflowProfile(
       "Core",
-      GHRTVideoRecordingEnabled.VIDEO_RECORDING_DISABLED
+      GHRTVideoRecordingEnabled.VIDEO_RECORDING_DISABLED,
+      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_DISABLED
     );
   }
 }

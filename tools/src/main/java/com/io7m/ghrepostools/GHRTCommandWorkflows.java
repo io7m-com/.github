@@ -139,6 +139,14 @@ public final class GHRTCommandWorkflows implements QCommandType
               case VIDEO_RECORDING_DISABLED -> VIDEO_RECORDING_DISABLED;
             };
 
+          final Optional<GHRTCustomRunScript> customRunScript =
+            switch (workflowProfile.customRunScriptEnabled()) {
+              case CUSTOM_RUN_SCRIPT_ENABLED ->
+                Optional.of(workflow.platform().customRunScript());
+              case CUSTOM_RUN_SCRIPT_DISABLED ->
+                Optional.empty();
+            };
+
           template.process(
             new GHRTWorkflowModel(
               GHRTActionVersions.get(),
@@ -151,6 +159,7 @@ public final class GHRTCommandWorkflows implements QCommandType
               workflow.coverage(),
               workflow.deploy(),
               videoRecordingEnabled,
+              customRunScript,
               "Push"
             ),
             output
@@ -176,6 +185,14 @@ public final class GHRTCommandWorkflows implements QCommandType
               case VIDEO_RECORDING_DISABLED -> VIDEO_RECORDING_DISABLED;
             };
 
+          final Optional<GHRTCustomRunScript> customRunScript =
+            switch (workflowProfile.customRunScriptEnabled()) {
+              case CUSTOM_RUN_SCRIPT_ENABLED ->
+                Optional.of(workflow.platform().customRunScript());
+              case CUSTOM_RUN_SCRIPT_DISABLED ->
+                Optional.empty();
+            };
+
           template.process(
             new GHRTWorkflowModel(
               GHRTActionVersions.get(),
@@ -188,6 +205,7 @@ public final class GHRTCommandWorkflows implements QCommandType
               GHRTCoverageEnabled.COVERAGE_DISABLED,
               GHRTDeployEnabled.DEPLOY_DISABLED,
               videoRecordingEnabled,
+              customRunScript,
               "PullRequest"
             ),
             output
@@ -223,6 +241,7 @@ public final class GHRTCommandWorkflows implements QCommandType
             GHRTCoverageEnabled.COVERAGE_ENABLED,
             GHRTDeployEnabled.DEPLOY_ENABLED,
             VIDEO_RECORDING_DISABLED,
+            Optional.empty(),
             ""
           ),
           output
