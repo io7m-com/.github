@@ -55,6 +55,7 @@ public final class GHRTCommandWorkflows implements QCommandType
 
   private final QCommandMetadata metadata;
   private Path workflowDirectory;
+  private Path githubDirectory;
 
   /**
    * Construct a command.
@@ -81,18 +82,28 @@ public final class GHRTCommandWorkflows implements QCommandType
     final QCommandContextType context)
     throws Exception
   {
+    this.githubDirectory =
+      Path.of("");
+    this.githubDirectory =
+      this.githubDirectory.resolve(".github");
+    this.workflowDirectory =
+      this.githubDirectory.resolve("workflows");
+
     final var templates =
       GHRTTemplateService.create();
 
-    final var names =
-      GHRTProjectNames.projectName();
+    final Optional<GHRTWorkflowProfile> workflowProfileOpt =
+      this.findWorkflowProfile();
+
+    if (workflowProfileOpt.isEmpty()) {
+      return QCommandStatus.SUCCESS;
+    }
 
     final GHRTWorkflowProfile workflowProfile =
-      findWorkflowProfile();
+      workflowProfileOpt.orElseThrow();
 
-    this.workflowDirectory = Path.of("");
-    this.workflowDirectory = this.workflowDirectory.resolve(".github");
-    this.workflowDirectory = this.workflowDirectory.resolve("workflows");
+    final var names =
+      GHRTProjectNames.projectName();
 
     {
       Files.createDirectories(this.workflowDirectory);
@@ -264,15 +275,14 @@ public final class GHRTCommandWorkflows implements QCommandType
     }
   }
 
-  private static GHRTWorkflowProfile findWorkflowProfile()
+  private Optional<GHRTWorkflowProfile> findWorkflowProfile()
     throws IOException
   {
-    var path = Path.of("");
-    path = path.resolve(".github");
-    path = path.resolve("workflows.conf");
+    final var path =
+      this.githubDirectory.resolve("workflows.conf");
 
     if (!Files.exists(path)) {
-      return GHRTWorkflowProfile.core();
+      return Optional.of(GHRTWorkflowProfile.core());
     }
 
     final var props = new Properties();
@@ -281,6 +291,11 @@ public final class GHRTCommandWorkflows implements QCommandType
     }
     final var profileName =
       props.getProperty("ProfileName").trim();
+
+    if ("None".equals(profileName)) {
+      return Optional.empty();
+    }
+
     final var profiles =
       GHRTWorkflowProfile.profiles();
 
@@ -290,7 +305,7 @@ public final class GHRTCommandWorkflows implements QCommandType
         "Unrecognized profile name: %s".formatted(profileName)
       );
     }
-    return workflowProfile;
+    return Optional.of(workflowProfile);
   }
 
   @Override
