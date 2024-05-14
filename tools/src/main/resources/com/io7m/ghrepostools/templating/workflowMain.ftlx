@@ -1,4 +1,10 @@
 [#ftl output_format="plainText"]
+#
+#  Automatically generated: DO NOT EDIT.
+#
+#  Generation code: https://www.github.com/io7m-com/.github/
+#  Workflow profile: ${workflowProfileName}
+#
 
 name: ${workflowName}
 
@@ -16,12 +22,12 @@ jobs:
   build:
     runs-on: ${imageName}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v${actionsCheckoutVersion}
         with:
           submodules: true
 
       - name: JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v${actionsSetupJavaVersion}
         with:
           java-version: ${javaVersion}
           distribution: '${javaDistribution}'
@@ -34,27 +40,39 @@ jobs:
         id: project_is_snapshot
         run: java .github/workflows/Tools.java ShowProjectIsSnapshot pom.xml >> "$GITHUB_OUTPUT"
 
+[#if videoRecordingEnabled == "VIDEO_RECORDING_ENABLED"]
+      - name: Build
+        run: ./.github/workflows/run-with-xvfb.sh mvn --batch-mode --strict-checksums --errors clean verify site
+
+      - name: Upload video
+        uses: actions/upload-artifact@v${actionsUploadArtifactVersion}
+        if: ${r"${{ always() }}"}
+        with:
+          name: test-video
+          path: test-suite.webm
+[#else]
       - name: Build
         run: mvn --batch-mode --strict-checksums --errors clean verify site
+[/#if]
 
       - name: Upload test logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v${actionsUploadArtifactVersion}
         if: always()
         with:
           name: test-logs
           path: ./com.io7m.${projectName}.tests/target/surefire-reports
 
-[#if coverage]
+[#if coverage == "COVERAGE_ENABLED"]
       - name: Coverage
-        uses: codecov/codecov-action@v4.3.1
+        uses: codecov/codecov-action@v${actionsCodecovVersion}
         with:
           token: ${r"${{ secrets.CODECOV_TOKEN }}"}
           file: com.io7m.${projectName}.tests/target/site/jacoco-aggregate/jacoco.xml
 [/#if]
 
-[#if deploy]
+[#if deploy == "DEPLOY_ENABLED"]
       - name: Log in to Quay.io.
-        uses: redhat-actions/podman-login@v1.7
+        uses: redhat-actions/podman-login@v${actionsPodmanLoginVersion}
         with:
           username: ${r"${{ secrets.QUAY_IO_USERNAME }}"}
           password: ${r"${{ secrets.QUAY_IO_PASSWORD }}"}

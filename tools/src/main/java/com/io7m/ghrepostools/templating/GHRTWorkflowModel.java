@@ -17,17 +17,25 @@
 
 package com.io7m.ghrepostools.templating;
 
+import com.io7m.ghrepostools.GHRTActionVersions;
+import com.io7m.ghrepostools.GHRTCoverageEnabled;
+import com.io7m.ghrepostools.GHRTDeployEnabled;
+import com.io7m.ghrepostools.GHRTVideoRecordingEnabled;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public record GHRTWorkflowModel(
+  GHRTActionVersions actionVersions,
+  String workflowProfileName,
   String workflowName,
   String imageName,
   String javaVersion,
   String javaDistribution,
   String projectName,
-  boolean coverage,
-  boolean deploy,
+  GHRTCoverageEnabled coverage,
+  GHRTDeployEnabled deploy,
+  GHRTVideoRecordingEnabled videoRecordingEnabled,
   String sourceEvent)
   implements GHRTTemplateDataModelType
 {
@@ -35,14 +43,24 @@ public record GHRTWorkflowModel(
   public Map<String, Object> toTemplateHash()
   {
     final var m = new HashMap<String, Object>();
-    m.put("workflowName", this.workflowName());
-    m.put("imageName", this.imageName());
-    m.put("javaVersion", this.javaVersion());
-    m.put("javaDistribution", this.javaDistribution());
-    m.put("projectName", this.projectName());
+
+    final var v = this.actionVersions;
+    m.put("actionsCheckoutVersion", v.checkoutVersion());
+    m.put("actionsCodecovVersion", v.codecovVersion());
+    m.put("actionsPodmanLoginVersion", v.podmanLoginVersion());
+    m.put("actionsSetupJavaVersion", v.setupJavaVersion());
+    m.put("actionsUploadArtifactVersion", v.uploadArtifactVersion());
+
     m.put("coverage", this.coverage());
     m.put("deploy", this.deploy());
+    m.put("imageName", this.imageName());
+    m.put("javaDistribution", this.javaDistribution());
+    m.put("javaVersion", this.javaVersion());
+    m.put("projectName", this.projectName());
     m.put("sourceEvent", this.sourceEvent());
+    m.put("videoRecordingEnabled", this.videoRecordingEnabled);
+    m.put("workflowName", this.workflowName());
+    m.put("workflowProfileName", this.workflowProfileName());
     return m;
   }
 }

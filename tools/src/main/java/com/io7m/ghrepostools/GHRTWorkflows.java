@@ -19,6 +19,10 @@ package com.io7m.ghrepostools;
 
 import java.util.List;
 
+import static com.io7m.ghrepostools.GHRTCoverageEnabled.COVERAGE_DISABLED;
+import static com.io7m.ghrepostools.GHRTCoverageEnabled.COVERAGE_ENABLED;
+import static com.io7m.ghrepostools.GHRTDeployEnabled.DEPLOY_DISABLED;
+import static com.io7m.ghrepostools.GHRTDeployEnabled.DEPLOY_ENABLED;
 import static com.io7m.ghrepostools.GHRTJDKCategory.CURRENT;
 import static com.io7m.ghrepostools.GHRTJDKCategory.LTS;
 import static com.io7m.ghrepostools.GHRTJDKDistribution.TEMURIN;
@@ -43,32 +47,32 @@ public final class GHRTWorkflows
         TEMURIN,
         CURRENT,
         JDK_CURRENT,
-        false,
-        false
+        COVERAGE_DISABLED,
+        DEPLOY_DISABLED
       ),
       new GHRTWorkflow(
         LINUX,
         TEMURIN,
         LTS,
         JDK_LTS,
-        true,
-        true
+        COVERAGE_ENABLED,
+        DEPLOY_ENABLED
       ),
       new GHRTWorkflow(
         WINDOWS,
         TEMURIN,
         CURRENT,
         JDK_CURRENT,
-        false,
-        false
+        COVERAGE_DISABLED,
+        DEPLOY_DISABLED
       ),
       new GHRTWorkflow(
         WINDOWS,
         TEMURIN,
         LTS,
         JDK_LTS,
-        false,
-        false
+        COVERAGE_DISABLED,
+        DEPLOY_DISABLED
       )
     );
   }

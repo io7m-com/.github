@@ -28,14 +28,19 @@ import com.io7m.quarrel.core.QStringType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.nio.file.attribute.PosixFilePermissions;
-import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 
+import static com.io7m.ghrepostools.GHRTExecutable.EXECUTABLE;
+import static com.io7m.ghrepostools.GHRTExecutable.NOT_EXECUTABLE;
+import static com.io7m.ghrepostools.GHRTVideoRecordingEnabled.VIDEO_RECORDING_DISABLED;
+import static com.io7m.ghrepostools.GHRTVideoRecordingEnabled.VIDEO_RECORDING_ENABLED;
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 import static java.nio.file.StandardOpenOption.WRITE;
@@ -49,6 +54,7 @@ public final class GHRTCommandWorkflows implements QCommandType
   };
 
   private final QCommandMetadata metadata;
+  private Path workflowDirectory;
 
   /**
    * Construct a command.
@@ -81,28 +87,15 @@ public final class GHRTCommandWorkflows implements QCommandType
     final var names =
       GHRTProjectNames.projectName();
 
-    final var resources =
-      GHRTStrings.ofXMLResource(
-        GHRTCommandWorkflows.class,
-        "/com/io7m/ghrepostools/Strings.xml"
-      );
+    final GHRTWorkflowProfile workflowProfile =
+      findWorkflowProfile();
+
+    this.workflowDirectory = Path.of("");
+    this.workflowDirectory = this.workflowDirectory.resolve(".github");
+    this.workflowDirectory = this.workflowDirectory.resolve("workflows");
 
     {
-      var path = Path.of("");
-      path = path.resolve(".github");
-      path = path.resolve("workflows-are-custom");
-
-      if (Files.exists(path)) {
-        return QCommandStatus.SUCCESS;
-      }
-    }
-
-    var workflowDirectory = Path.of("");
-    workflowDirectory = workflowDirectory.resolve(".github");
-    workflowDirectory = workflowDirectory.resolve("workflows");
-
-    {
-      Files.createDirectories(workflowDirectory);
+      Files.createDirectories(this.workflowDirectory);
 
       final var workflows =
         new GHRTWorkflows()
@@ -110,9 +103,11 @@ public final class GHRTCommandWorkflows implements QCommandType
 
       for (final var workflow : workflows) {
         final var mainFile =
-          workflowDirectory.resolve("%s.yml".formatted(workflow.mainName()));
+          this.workflowDirectory.resolve(
+            "%s.yml".formatted(workflow.mainName()));
         final var prFile =
-          workflowDirectory.resolve("%s.yml".formatted(workflow.prName()));
+          this.workflowDirectory.resolve(
+            "%s.yml".formatted(workflow.prName()));
 
         LOG.info("writing {}", mainFile);
         LOG.info("writing {}", prFile);
@@ -123,8 +118,20 @@ public final class GHRTCommandWorkflows implements QCommandType
           final var template =
             templates.workflowMain();
 
+          final var videoRecordingEnabled =
+            switch (workflowProfile.videoRecordingEnabled()) {
+              case VIDEO_RECORDING_ENABLED ->
+                switch (workflow.platform().videoSupported()) {
+                  case VIDEO_SUPPORTED -> VIDEO_RECORDING_ENABLED;
+                  case VIDEO_UNSUPPORTED -> VIDEO_RECORDING_DISABLED;
+                };
+              case VIDEO_RECORDING_DISABLED -> VIDEO_RECORDING_DISABLED;
+            };
+
           template.process(
             new GHRTWorkflowModel(
+              GHRTActionVersions.get(),
+              workflowProfile.name(),
               workflow.mainName(),
               workflow.platform().imageName(),
               Integer.toUnsignedString(workflow.jdkVersion()),
@@ -132,6 +139,7 @@ public final class GHRTCommandWorkflows implements QCommandType
               names.shortName(),
               workflow.coverage(),
               workflow.deploy(),
+              videoRecordingEnabled,
               "Push"
             ),
             output
@@ -147,15 +155,28 @@ public final class GHRTCommandWorkflows implements QCommandType
           final var template =
             templates.workflowMain();
 
+          final var videoRecordingEnabled =
+            switch (workflowProfile.videoRecordingEnabled()) {
+              case VIDEO_RECORDING_ENABLED ->
+                switch (workflow.platform().videoSupported()) {
+                  case VIDEO_SUPPORTED -> VIDEO_RECORDING_ENABLED;
+                  case VIDEO_UNSUPPORTED -> VIDEO_RECORDING_DISABLED;
+                };
+              case VIDEO_RECORDING_DISABLED -> VIDEO_RECORDING_DISABLED;
+            };
+
           template.process(
             new GHRTWorkflowModel(
+              GHRTActionVersions.get(),
+              workflowProfile.name(),
               workflow.prName(),
               workflow.platform().imageName(),
               Integer.toUnsignedString(workflow.jdkVersion()),
               workflow.jdkDistribution().lowerName(),
               names.shortName(),
-              false,
-              false,
+              GHRTCoverageEnabled.COVERAGE_DISABLED,
+              GHRTDeployEnabled.DEPLOY_DISABLED,
+              videoRecordingEnabled,
               "PullRequest"
             ),
             output
@@ -169,22 +190,7 @@ public final class GHRTCommandWorkflows implements QCommandType
 
     {
       final var filePath =
-        workflowDirectory.resolve("Tools.java");
-
-      LOG.info("writing {}", filePath);
-
-      try (var out = Files.newOutputStream(filePath, FILE_WRITE_OPTIONS)) {
-        try (var in = GHRTCommandWorkflows.class
-          .getResourceAsStream("/com/io7m/ghrepostools/embedded/Tools.java")) {
-          in.transferTo(out);
-          out.flush();
-        }
-      }
-    }
-
-    {
-      final var filePath =
-        workflowDirectory.resolve("deploy.linux.temurin.lts.yml");
+        this.workflowDirectory.resolve("deploy.linux.temurin.lts.yml");
 
       LOG.info("writing {}", filePath);
 
@@ -196,13 +202,16 @@ public final class GHRTCommandWorkflows implements QCommandType
 
         template.process(
           new GHRTWorkflowModel(
+            GHRTActionVersions.get(),
+            GHRTWorkflowProfile.core().name(),
             "deploy.linux.temurin.lts",
             GHRTPlatform.LINUX.imageName(),
             Integer.toUnsignedString(GHRTWorkflows.JDK_LTS),
             GHRTJDKDistribution.TEMURIN.lowerName(),
             names.shortName(),
-            true,
-            true,
+            GHRTCoverageEnabled.COVERAGE_ENABLED,
+            GHRTDeployEnabled.DEPLOY_ENABLED,
+            VIDEO_RECORDING_DISABLED,
             ""
           ),
           output
@@ -213,47 +222,75 @@ public final class GHRTCommandWorkflows implements QCommandType
       }
     }
 
-    {
-      final var filePath =
-        workflowDirectory.resolve("deploy-snapshot.sh");
-
-      LOG.info("writing {}", filePath);
-
-      try (var out = Files.newOutputStream(filePath, FILE_WRITE_OPTIONS)) {
-        try (var in = GHRTCommandWorkflows.class
-          .getResourceAsStream("/com/io7m/ghrepostools/deploy-snapshot.sh")) {
-          in.transferTo(out);
-          out.flush();
-        }
-      }
-
-      Files.setPosixFilePermissions(
-        filePath,
-        PosixFilePermissions.fromString("rwx------")
-      );
-    }
-
-    {
-      final var filePath =
-        workflowDirectory.resolve("deploy-release.sh");
-
-      LOG.info("writing {}", filePath);
-
-      try (var out = Files.newOutputStream(filePath, FILE_WRITE_OPTIONS)) {
-        try (var in = GHRTCommandWorkflows.class
-          .getResourceAsStream("/com/io7m/ghrepostools/deploy-release.sh")) {
-          in.transferTo(out);
-          out.flush();
-        }
-      }
-
-      Files.setPosixFilePermissions(
-        filePath,
-        PosixFilePermissions.fromString("rwx------")
-      );
-    }
-
+    this.writeFileResource("Tools.java", NOT_EXECUTABLE);
+    this.writeFileResource("deploy-release.sh", EXECUTABLE);
+    this.writeFileResource("deploy-snapshot.sh", EXECUTABLE);
+    this.writeFileResource("run-with-xvfb.sh", EXECUTABLE);
+    this.writeFileResource("wallpaper.png", NOT_EXECUTABLE);
     return QCommandStatus.SUCCESS;
+  }
+
+  private void writeFileResource(
+    final String file,
+    final GHRTExecutable executable)
+    throws IOException
+  {
+    final var filePath =
+      this.workflowDirectory.resolve(file);
+
+    LOG.info("Writing {}", filePath);
+
+    try (var out = Files.newOutputStream(filePath, FILE_WRITE_OPTIONS)) {
+      try (var in = GHRTCommandWorkflows.class
+        .getResourceAsStream("/com/io7m/ghrepostools/%s".formatted(file))) {
+        in.transferTo(out);
+        out.flush();
+      }
+    }
+
+    switch (executable) {
+      case EXECUTABLE -> {
+        Files.setPosixFilePermissions(
+          filePath,
+          PosixFilePermissions.fromString("rwxr-xr-x")
+        );
+      }
+      case NOT_EXECUTABLE -> {
+        Files.setPosixFilePermissions(
+          filePath,
+          PosixFilePermissions.fromString("rw-r--r--")
+        );
+      }
+    }
+  }
+
+  private static GHRTWorkflowProfile findWorkflowProfile()
+    throws IOException
+  {
+    var path = Path.of("");
+    path = path.resolve(".github");
+    path = path.resolve("workflows.conf");
+
+    if (!Files.exists(path)) {
+      return GHRTWorkflowProfile.core();
+    }
+
+    final var props = new Properties();
+    try (var stream = Files.newInputStream(path)) {
+      props.load(stream);
+    }
+    final var profileName =
+      props.getProperty("ProfileName").trim();
+    final var profiles =
+      GHRTWorkflowProfile.profiles();
+
+    final var workflowProfile = profiles.get(profileName);
+    if (workflowProfile == null) {
+      throw new IllegalStateException(
+        "Unrecognized profile name: %s".formatted(profileName)
+      );
+    }
+    return workflowProfile;
   }
 
   @Override

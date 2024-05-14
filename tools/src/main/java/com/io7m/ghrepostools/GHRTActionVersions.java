@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 Mark Raynsford <code@io7m.com> https://www.io7m.com
+ * Copyright © 2024 Mark Raynsford <code@io7m.com> https://www.io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,33 +14,35 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+
 package com.io7m.ghrepostools;
 
-public record GHRTWorkflow(
-  GHRTPlatform platform,
-  GHRTJDKDistribution jdkDistribution,
-  GHRTJDKCategory jdkCategory,
-  int jdkVersion,
-  GHRTCoverageEnabled coverage,
-  GHRTDeployEnabled deploy)
+import java.util.Objects;
+
+public record GHRTActionVersions(
+  String checkoutVersion,
+  String setupJavaVersion,
+  String uploadArtifactVersion,
+  String codecovVersion,
+  String podmanLoginVersion)
 {
-  public String mainName()
+  public GHRTActionVersions
   {
-    return String.format(
-      "main.%s.%s.%s",
-      this.platform.lowerName(),
-      this.jdkDistribution.lowerName(),
-      this.jdkCategory.lowerName()
-    );
+    Objects.requireNonNull(checkoutVersion, "checkoutVersion");
+    Objects.requireNonNull(setupJavaVersion, "setupJavaVersion");
+    Objects.requireNonNull(uploadArtifactVersion, "uploadArtifactVersion");
+    Objects.requireNonNull(codecovVersion, "codecovVersion");
+    Objects.requireNonNull(podmanLoginVersion, "podmanLoginVersion");
   }
 
-  public String prName()
+  public static GHRTActionVersions get()
   {
-    return String.format(
-      "pr.%s.%s.%s",
-      this.platform.lowerName(),
-      this.jdkDistribution.lowerName(),
-      this.jdkCategory.lowerName()
+    return new GHRTActionVersions(
+      "4",
+      "4",
+      "4",
+      "4.3.1",
+      "1.7"
     );
   }
 }

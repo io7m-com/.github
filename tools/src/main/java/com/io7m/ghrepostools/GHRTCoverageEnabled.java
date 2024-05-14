@@ -1,5 +1,5 @@
 /*
- * Copyright © 2022 Mark Raynsford <code@io7m.com> https://www.io7m.com
+ * Copyright © 2024 Mark Raynsford <code@io7m.com> https://www.io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -14,42 +14,11 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+
 package com.io7m.ghrepostools;
 
-public enum GHRTPlatform
+public enum GHRTCoverageEnabled
 {
-  WINDOWS,
-  LINUX;
-
-  public GHRTVideoSupported videoSupported()
-  {
-    return switch (this) {
-      case WINDOWS -> GHRTVideoSupported.VIDEO_UNSUPPORTED;
-      case LINUX -> GHRTVideoSupported.VIDEO_SUPPORTED;
-    };
-  }
-
-  public String humanName()
-  {
-    return switch (this) {
-      case LINUX -> "Linux";
-      case WINDOWS -> "Windows";
-    };
-  }
-
-  public String lowerName()
-  {
-    return switch (this) {
-      case LINUX -> "linux";
-      case WINDOWS -> "windows";
-    };
-  }
-
-  public String imageName()
-  {
-    return switch (this) {
-      case LINUX -> "ubuntu-latest";
-      case WINDOWS -> "windows-latest";
-    };
-  }
+  COVERAGE_ENABLED,
+  COVERAGE_DISABLED
 }
