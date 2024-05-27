@@ -20,12 +20,14 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![calino](profile/calino.png)|[calino](https://www.github.com/io7m-com/calino)|Strongly-specified 3D texture file format.|
 |![canonmill](profile/canonmill.png)|[canonmill](https://www.github.com/io7m-com/canonmill)|Directory-based Java Keystore.|
 |![cardant](profile/cardant.png)|[cardant](https://www.github.com/io7m-com/cardant)|Inventory server.|
+|![cardant_gui](profile/cardant_gui.png)|[cardant_gui](https://www.github.com/io7m-com/cardant_gui)|Cardant JavaFX GUI.|
 |![cedarbridge](profile/cedarbridge.png)|[cedarbridge](https://www.github.com/io7m-com/cedarbridge)|Generic, strongly-typed, versioned message protocol compiler.|
 |![certusine](profile/certusine.png)|[certusine](https://www.github.com/io7m-com/certusine)|ACME client.|
 |![changelog](profile/changelog.png)|[changelog](https://www.github.com/io7m-com/changelog)|Software changelogs.|
 |![checkstyle_rules](profile/checkstyle_rules.png)|[checkstyle_rules](https://www.github.com/io7m-com/checkstyle_rules)|Common Checkstyle rules for io7m projects.|
 |![chione](profile/chione.png)|[chione](https://www.github.com/io7m-com/chione)|Opinionated builds of Apache Artemis for small-scale deployments.|
 |![cxbutton](profile/cxbutton.png)|[cxbutton](https://www.github.com/io7m-com/cxbutton)|Customizable embossed CSS buttons.|
+|![darco](profile/darco.png)|[darco](https://www.github.com/io7m-com/darco)|Minimalist, opinionated database access.|
 |![digal](profile/digal.png)|[digal](https://www.github.com/io7m-com/digal)|Java FX rotary dials.|
 |![dixmont](profile/dixmont.png)|[dixmont](https://www.github.com/io7m-com/dixmont)|Dixmont Jackson extensions.|
 |![ervilla](profile/ervilla.png)|[ervilla](https://www.github.com/io7m-com/ervilla)|JUnit 5 Podman container creation.|
