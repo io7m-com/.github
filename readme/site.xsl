@@ -18,7 +18,7 @@
       <xsl:if test="c:GroupAssignment[@Name='com.io7m.core']">
         <xsl:variable name="Description" select="dc:description"/>
         <xsl:variable name="SCM" select="c:Meta[@Name='scm_source']"/>
-        <xsl:value-of select="concat('|![',@Name,'](profile/',@Name,'.png)|[',@Name,'](',$SCM,')|',$Description,'|')"/><xsl:text>&#x000a;</xsl:text>
+        <xsl:value-of select="concat('|![',@Name,'](',@Name,'.png)|[',@Name,'](',$SCM,')|',$Description,'|')"/><xsl:text>&#x000a;</xsl:text>
       </xsl:if>
     </xsl:for-each>
     <xsl:text>&#x000a;</xsl:text>
