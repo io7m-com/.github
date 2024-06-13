@@ -33,6 +33,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![ervilla](ervilla.png)|[ervilla](https://www.github.com/io7m-com/ervilla)|JUnit 5 Podman container creation.|
 |![ethermaker](ethermaker.png)|[ethermaker](https://www.github.com/io7m-com/ethermaker)|Ethernet MAC address generator.|
 |![flail](flail.png)|[flail](https://www.github.com/io7m-com/flail)|DNS server stress testing tool.|
+|![garriga](garriga.png)|[garriga](https://www.github.com/io7m-com/garriga)|AlertManager → Matrix Alert Relay.|
 |![gatwick](gatwick.png)|[gatwick](https://www.github.com/io7m-com/gatwick)|BOSS GT-1000 controller.|
 |![genevan](genevan.png)|[genevan](https://www.github.com/io7m-com/genevan)|Generic protocol negotiation algorithm.|
 |![gtyrell](gtyrell.png)|[gtyrell](https://www.github.com/io7m-com/gtyrell)|Git repository mirroring tool.|
