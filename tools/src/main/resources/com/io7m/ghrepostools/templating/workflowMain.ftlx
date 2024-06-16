@@ -42,6 +42,8 @@ jobs:
 
 [#if videoRecordingEnabled == "VIDEO_RECORDING_ENABLED"]
       - name: Build
+        env:
+          XOANON_REALLY_USE_LOCAL_DISPLAY: true
         run: ./.github/workflows/run-with-xvfb.sh mvn --batch-mode --strict-checksums --errors clean verify site
 
       - name: Upload video
@@ -55,6 +57,8 @@ jobs:
         run: ./.github/workflows/${customRunScript}
 [#else]
       - name: Build
+        env:
+          XOANON_REALLY_USE_LOCAL_DISPLAY: true
         run: mvn --batch-mode --strict-checksums --errors clean verify site
 [/#if]
 
