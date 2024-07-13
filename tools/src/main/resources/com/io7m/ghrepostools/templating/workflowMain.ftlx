@@ -40,6 +40,13 @@ jobs:
         id: project_is_snapshot
         run: java .github/workflows/Tools.java ShowProjectIsSnapshot pom.xml >> "$GITHUB_OUTPUT"
 
+[#if vulkanEnabled == "VULKAN_ENABLED"]
+      - name: Configure Vulkan
+        uses: NcStudios/VulkanCI@v1.1
+        with:
+          sdkVersion: 1.3.283.0
+[/#if]
+
 [#if videoRecordingEnabled == "VIDEO_RECORDING_ENABLED"]
       - name: Build
         env:

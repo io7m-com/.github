@@ -23,6 +23,7 @@ import com.io7m.ghrepostools.GHRTCustomRunScript;
 import com.io7m.ghrepostools.GHRTCustomRunScriptEnabled;
 import com.io7m.ghrepostools.GHRTDeployEnabled;
 import com.io7m.ghrepostools.GHRTVideoRecordingEnabled;
+import com.io7m.ghrepostools.GHRTVulkanEnabled;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -39,6 +40,7 @@ public record GHRTWorkflowModel(
   GHRTCoverageEnabled coverage,
   GHRTDeployEnabled deploy,
   GHRTVideoRecordingEnabled videoRecordingEnabled,
+  GHRTVulkanEnabled vulkanEnabled,
   Optional<GHRTCustomRunScript> customRunScript,
   String sourceEvent)
   implements GHRTTemplateDataModelType
@@ -67,6 +69,7 @@ public record GHRTWorkflowModel(
     m.put("projectName", this.projectName());
     m.put("sourceEvent", this.sourceEvent());
     m.put("videoRecordingEnabled", this.videoRecordingEnabled);
+    m.put("vulkanEnabled", this.vulkanEnabled);
     m.put("workflowName", this.workflowName());
     m.put("workflowProfileName", this.workflowProfileName());
     return m;

@@ -25,7 +25,8 @@ import java.util.stream.Stream;
 public record GHRTWorkflowProfile(
   String name,
   GHRTVideoRecordingEnabled videoRecordingEnabled,
-  GHRTCustomRunScriptEnabled customRunScriptEnabled)
+  GHRTCustomRunScriptEnabled customRunScriptEnabled,
+  GHRTVulkanEnabled vulkanEnabled)
 {
   public GHRTWorkflowProfile
   {
@@ -37,8 +38,9 @@ public record GHRTWorkflowProfile(
   {
     return Stream.of(
       core(),
+      customRun(),
       screenRecorded(),
-      customRun()
+      vulkan()
     ).collect(Collectors.toMap(c -> c.name, c -> c));
   }
 
@@ -47,7 +49,8 @@ public record GHRTWorkflowProfile(
     return new GHRTWorkflowProfile(
       "CustomRunScript",
       GHRTVideoRecordingEnabled.VIDEO_RECORDING_DISABLED,
-      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_ENABLED
+      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_ENABLED,
+      GHRTVulkanEnabled.VULKAN_DISABLED
     );
   }
 
@@ -56,7 +59,8 @@ public record GHRTWorkflowProfile(
     return new GHRTWorkflowProfile(
       "ScreenRecorded",
       GHRTVideoRecordingEnabled.VIDEO_RECORDING_ENABLED,
-      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_DISABLED
+      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_DISABLED,
+      GHRTVulkanEnabled.VULKAN_DISABLED
     );
   }
 
@@ -65,7 +69,18 @@ public record GHRTWorkflowProfile(
     return new GHRTWorkflowProfile(
       "Core",
       GHRTVideoRecordingEnabled.VIDEO_RECORDING_DISABLED,
-      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_DISABLED
+      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_DISABLED,
+      GHRTVulkanEnabled.VULKAN_DISABLED
+    );
+  }
+
+  public static GHRTWorkflowProfile vulkan()
+  {
+    return new GHRTWorkflowProfile(
+      "Vulkan",
+      GHRTVideoRecordingEnabled.VIDEO_RECORDING_ENABLED,
+      GHRTCustomRunScriptEnabled.CUSTOM_RUN_SCRIPT_DISABLED,
+      GHRTVulkanEnabled.VULKAN_ENABLED
     );
   }
 }

@@ -159,6 +159,7 @@ public final class GHRTCommandWorkflows implements QCommandType
               workflow.coverage(),
               workflow.deploy(),
               videoRecordingEnabled,
+              workflowProfile.vulkanEnabled(),
               customRunScript,
               "Push"
             ),
@@ -205,6 +206,7 @@ public final class GHRTCommandWorkflows implements QCommandType
               GHRTCoverageEnabled.COVERAGE_DISABLED,
               GHRTDeployEnabled.DEPLOY_DISABLED,
               videoRecordingEnabled,
+              workflowProfile.vulkanEnabled(),
               customRunScript,
               "PullRequest"
             ),
@@ -241,6 +243,7 @@ public final class GHRTCommandWorkflows implements QCommandType
             GHRTCoverageEnabled.COVERAGE_ENABLED,
             GHRTDeployEnabled.DEPLOY_ENABLED,
             VIDEO_RECORDING_DISABLED,
+            GHRTVulkanEnabled.VULKAN_DISABLED,
             Optional.empty(),
             ""
           ),
