@@ -16,6 +16,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![blackthorne](blackthorne.png)|[blackthorne](https://www.github.com/io7m-com/blackthorne)|Functional streaming XML data extraction.|
 |![bodyrecomp](bodyrecomp.png)|[bodyrecomp](https://www.github.com/io7m-com/bodyrecomp)|Body recomposition tools.|
 |![boxwood](boxwood.png)|[boxwood](https://www.github.com/io7m-com/boxwood)|EPUB parser.|
+|![brackish](brackish.png)|[brackish](https://www.github.com/io7m-com/brackish)|JavaFX waveform display component.|
 |![brooklime](brooklime.png)|[brooklime](https://www.github.com/io7m-com/brooklime)|Nexus Pro staging repository API and command-line tool.|
 |![calino](calino.png)|[calino](https://www.github.com/io7m-com/calino)|Strongly-specified 3D texture file format.|
 |![canonmill](canonmill.png)|[canonmill](https://www.github.com/io7m-com/canonmill)|Directory-based Java Keystore.|
