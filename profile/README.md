@@ -102,6 +102,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![medrina](medrina.png)|[medrina](https://www.github.com/io7m-com/medrina)|Role-based mandatory access control.|
 |![mime2045](mime2045.png)|[mime2045](https://www.github.com/io7m-com/mime2045)|RFC 2045 MIME type parsing.|
 |![minisite](minisite.png)|[minisite](https://www.github.com/io7m-com/minisite)|Tiny software project static site generator.|
+|![miscue](miscue.png)|[miscue](https://www.github.com/io7m-com/miscue)|UI error dialogs.|
 |![northpike](northpike.png)|[northpike](https://www.github.com/io7m-com/northpike)|Continuous integration server.|
 |![northpike.packaging](northpike.packaging.png)|[northpike.packaging](https://www.github.com/io7m-com/northpike.packaging)|Platform-specific packaging for Northpike.|
 |![oxicoco](oxicoco.png)|[oxicoco](https://www.github.com/io7m-com/oxicoco)|Embeddable Java IRC server component.|
