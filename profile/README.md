@@ -33,6 +33,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![dixmont](dixmont.png)|[dixmont](https://www.github.com/io7m-com/dixmont)|Dixmont Jackson extensions.|
 |![ervilla](ervilla.png)|[ervilla](https://www.github.com/io7m-com/ervilla)|JUnit 5 Podman container creation.|
 |![ethermaker](ethermaker.png)|[ethermaker](https://www.github.com/io7m-com/ethermaker)|Ethernet MAC address generator.|
+|![exfilac](exfilac.png)|[exfilac](https://www.github.com/io7m-com/exfilac)|Simple, reliable, automated S3 uploads for Android.|
 |![flail](flail.png)|[flail](https://www.github.com/io7m-com/flail)|DNS server stress testing tool.|
 |![garriga](garriga.png)|[garriga](https://www.github.com/io7m-com/garriga)|AlertManager → Matrix Alert Relay.|
 |![gatwick](gatwick.png)|[gatwick](https://www.github.com/io7m-com/gatwick)|BOSS GT-1000 controller.|
@@ -108,6 +109,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![northpike.packaging](northpike.packaging.png)|[northpike.packaging](https://www.github.com/io7m-com/northpike.packaging)|Platform-specific packaging for Northpike.|
 |![oxicoco](oxicoco.png)|[oxicoco](https://www.github.com/io7m-com/oxicoco)|Embeddable Java IRC server component.|
 |![pallene](pallene.png)|[pallene](https://www.github.com/io7m-com/pallene)|An ultra-minimal single-file static web server.|
+|![peixoto](peixoto.png)|[peixoto](https://www.github.com/io7m-com/peixoto)|Packaged and shaded Amazon S3 SDK.|
 |![percentpass](percentpass.png)|[percentpass](https://www.github.com/io7m-com/percentpass)|Percent-passing extension for JUnit 5 tests.|
 |![primogenitor](primogenitor.png)|[primogenitor](https://www.github.com/io7m-com/primogenitor)|Ancestor POM for io7m projects.|
 |![quarrel](quarrel.png)|[quarrel](https://www.github.com/io7m-com/quarrel)|Strict, opinionated, typed command-line argument parser.|
