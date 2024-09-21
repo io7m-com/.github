@@ -134,6 +134,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![wendover](wendover.png)|[wendover](https://www.github.com/io7m-com/wendover)|Java NIO channel tools.|
 |![xoanon](xoanon.png)|[xoanon](https://www.github.com/io7m-com/xoanon)|JUnit 5 JavaFX test harness.|
 |![xstructural](xstructural.png)|[xstructural](https://www.github.com/io7m-com/xstructural)|XSLT implementation of the structural document language.|
+|![xyloid](xyloid.png)|[xyloid](https://www.github.com/io7m-com/xyloid)|Repackaged xerial sqlite-jdbc binaries.|
 |![zelador](zelador.png)|[zelador](https://www.github.com/io7m-com/zelador)|JUnit 5 cleaning service.|
 |![zeptoblog](zeptoblog.png)|[zeptoblog](https://www.github.com/io7m-com/zeptoblog)|Tiny, modular, static blog generator.|
 
