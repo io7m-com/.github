@@ -11,11 +11,11 @@ name: ${workflowName}
 [#if sourceEvent == "Push"]
 on:
   push:
-    branches: [ develop, feature/*, release/* ]
+    branches: [ master, main, develop, feature/*, release/* ]
 [#else]
 on:
   pull_request:
-    branches: [ develop, feature/*, release/* ]
+    branches: [ master, main, develop, feature/*, release/* ]
 [/#if]
 
 jobs:
