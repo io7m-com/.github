@@ -296,6 +296,7 @@ public final class GHRTCommandExecuteRelease implements QCommandType
       "-Dgpg.skip",
       "-DskipTests=true",
       "-DskipITs=true",
+      "-Denforcer.skip=true",
       "clean",
       "verify",
       "site"
