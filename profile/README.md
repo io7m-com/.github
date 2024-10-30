@@ -14,6 +14,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![aurantium](aurantium.png)|[aurantium](https://www.github.com/io7m-com/aurantium)|Aurantium audio sample map format.|
 |![bishopsgate](bishopsgate.png)|[bishopsgate](https://www.github.com/io7m-com/bishopsgate)|JMS → Matrix relay.|
 |![blackthorne](blackthorne.png)|[blackthorne](https://www.github.com/io7m-com/blackthorne)|Functional streaming XML data extraction.|
+|![blockhead](blockhead.png)|[blockhead](https://www.github.com/io7m-com/blockhead)|Unbound blocklist maintenance.|
 |![bodyrecomp](bodyrecomp.png)|[bodyrecomp](https://www.github.com/io7m-com/bodyrecomp)|Body recomposition tools.|
 |![boxwood](boxwood.png)|[boxwood](https://www.github.com/io7m-com/boxwood)|EPUB parser.|
 |![brackish](brackish.png)|[brackish](https://www.github.com/io7m-com/brackish)|JavaFX waveform display component.|
