@@ -36,8 +36,8 @@ public final class GHRTWorkflows
 
   }
 
-  public static int JDK_CURRENT = 22;
-  public static int JDK_LTS = 21;
+  public static int JDK_CURRENT = 23;
+  public static int JDK_LTS = 23;
 
   public List<GHRTWorkflow> workflows()
   {
