@@ -81,7 +81,7 @@ jobs:
         uses: codecov/codecov-action@v${actionsCodecovVersion}
         with:
           token: ${r"${{ secrets.CODECOV_TOKEN }}"}
-          file: com.io7m.${projectName}.tests/target/site/jacoco-aggregate/jacoco.xml
+          files: com.io7m.${projectName}.tests/target/site/jacoco-aggregate/jacoco.xml
 [/#if]
 
 [#if deploy == "DEPLOY_ENABLED"]
