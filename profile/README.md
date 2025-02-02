@@ -9,6 +9,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 | |Project|Description|
 |-|-|-|
 |![abstand](abstand.png)|[abstand](https://www.github.com/io7m-com/abstand)|Interval trees.|
+|![adelaide](adelaide.png)|[adelaide](https://www.github.com/io7m-com/adelaide)|Better ActiveMQ/Artemis OCI images.|
 |![anethum](anethum.png)|[anethum](https://www.github.com/io7m-com/anethum)|Generic parser API specification.|
 |![aradine](aradine.png)|[aradine](https://www.github.com/io7m-com/aradine)|Modular programmable synthesis.|
 |![aurantium](aurantium.png)|[aurantium](https://www.github.com/io7m-com/aurantium)|Aurantium audio sample map format.|
