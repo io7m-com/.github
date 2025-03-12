@@ -132,6 +132,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![timehack6435126](timehack6435126.png)|[timehack6435126](https://www.github.com/io7m-com/timehack6435126)|JVM high-resolution timer bug workaround.|
 |![trasco](trasco.png)|[trasco](https://www.github.com/io7m-com/trasco)|SQL database schema revision system.|
 |![usq](usq.png)|[usq](https://www.github.com/io7m-com/usq)|Unsupervised persistent queues.|
+|![ventrad](ventrad.png)|[ventrad](https://www.github.com/io7m-com/ventrad)|JSON protocol for HTTP endpoint version announcements.|
 |![verdant](verdant.png)|[verdant](https://www.github.com/io7m-com/verdant)|Binary protocol for HTTP endpoint version announcements.|
 |![verona](verona.png)|[verona](https://www.github.com/io7m-com/verona)|Semantic versioning types.|
 |![wendover](wendover.png)|[wendover](https://www.github.com/io7m-com/wendover)|Java NIO channel tools.|
