@@ -41,7 +41,7 @@ public record GHRTActionVersions(
       "4",
       "4",
       "4",
-      "5.1.2",
+      "5.4.0",
       "1.7"
     );
   }
