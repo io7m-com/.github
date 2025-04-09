@@ -55,14 +55,12 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![jattribute](jattribute.png)|[jattribute](https://www.github.com/io7m-com/jattribute)|Observable, functional, mutable variables.|
 |![jbssio](jbssio.png)|[jbssio](https://www.github.com/io7m-com/jbssio)|Java bytestream structural I/O.|
 |![jcamera](jcamera.png)|[jcamera](https://www.github.com/io7m-com/jcamera)|Camera implementations for 3D simulations.|
-|![jcathinone](jcathinone.png)|[jcathinone](https://www.github.com/io7m-com/jcathinone)|Apache Artemis message directory spooler.|
 |![jcip](jcip.png)|[jcip](https://www.github.com/io7m-com/jcip)|Clean-room JCIP annotations.|
 |![jcolorspace](jcolorspace.png)|[jcolorspace](https://www.github.com/io7m-com/jcolorspace)|Color space conversions.|
 |![jcoords](jcoords.png)|[jcoords](https://www.github.com/io7m-com/jcoords)|Functions for specifying and converting between coordinate spaces.|
 |![jcoronado](jcoronado.png)|[jcoronado](https://www.github.com/io7m-com/jcoronado)|Type-safe Vulkan wrapper.|
 |![jdeferthrow](jdeferthrow.png)|[jdeferthrow](https://www.github.com/io7m-com/jdeferthrow)|Defer and combine exceptions.|
 |![jdownload](jdownload.png)|[jdownload](https://www.github.com/io7m-com/jdownload)|Resumable HTTP downloader library.|
-|![jequality](jequality.png)|[jequality](https://www.github.com/io7m-com/jequality)|Equality handling.|
 |![jeucreader](jeucreader.png)|[jeucreader](https://www.github.com/io7m-com/jeucreader)|Unicode codepoint reader.|
 |![jfsm](jfsm.png)|[jfsm](https://www.github.com/io7m-com/jfsm)|Finite state machines.|
 |![jintegers](jintegers.png)|[jintegers](https://www.github.com/io7m-com/jintegers)|Integer handling.|
@@ -80,7 +78,6 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![jpplib](jpplib.png)|[jpplib](https://www.github.com/io7m-com/jpplib)|An improved fork of the unmaintained jpplib package.|
 |![jproperties](jproperties.png)|[jproperties](https://www.github.com/io7m-com/jproperties)|Typed property handling.|
 |![jptbox](jptbox.png)|[jptbox](https://www.github.com/io7m-com/jptbox)|Unicode box drawing.|
-|![jpuddle](jpuddle.png)|[jpuddle](https://www.github.com/io7m-com/jpuddle)|Trivial object pooling.|
 |![jqpage](jqpage.png)|[jqpage](https://www.github.com/io7m-com/jqpage)|SQL pagination functions.|
 |![jranges](jranges.png)|[jranges](https://www.github.com/io7m-com/jranges)|Range handling.|
 |![jregions](jregions.png)|[jregions](https://www.github.com/io7m-com/jregions)|Immutable area types.|
@@ -110,13 +107,13 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![montarre](montarre.png)|[montarre](https://www.github.com/io7m-com/montarre)|Application packaging tools.|
 |![northpike](northpike.png)|[northpike](https://www.github.com/io7m-com/northpike)|Continuous integration server.|
 |![northpike.packaging](northpike.packaging.png)|[northpike.packaging](https://www.github.com/io7m-com/northpike.packaging)|Platform-specific packaging for Northpike.|
-|![oxicoco](oxicoco.png)|[oxicoco](https://www.github.com/io7m-com/oxicoco)|Embeddable Java IRC server component.|
 |![pallene](pallene.png)|[pallene](https://www.github.com/io7m-com/pallene)|An ultra-minimal single-file static web server.|
 |![peixoto](peixoto.png)|[peixoto](https://www.github.com/io7m-com/peixoto)|Packaged and shaded Amazon S3 SDK.|
 |![percentpass](percentpass.png)|[percentpass](https://www.github.com/io7m-com/percentpass)|Percent-passing extension for JUnit 5 tests.|
 |![primogenitor](primogenitor.png)|[primogenitor](https://www.github.com/io7m-com/primogenitor)|Ancestor POM for io7m projects.|
 |![quarrel](quarrel.png)|[quarrel](https://www.github.com/io7m-com/quarrel)|Strict, opinionated, typed command-line argument parser.|
 |![quixote](quixote.png)|[quixote](https://www.github.com/io7m-com/quixote)|Tiny embedded web server for unit testing.|
+|![renderdoc_jffm](renderdoc_jffm.png)|[renderdoc_jffm](https://www.github.com/io7m-com/renderdoc_jffm)|RenderDoc FFM API.|
 |![repetoir](repetoir.png)|[repetoir](https://www.github.com/io7m-com/repetoir)|Service directory.|
 |![scando](scando.png)|[scando](https://www.github.com/io7m-com/scando)|Tiny japicmp command-line wrapper.|
 |![seltzer](seltzer.png)|[seltzer](https://www.github.com/io7m-com/seltzer)|A specification for structured, user-facing error values.|
