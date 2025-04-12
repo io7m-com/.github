@@ -37,6 +37,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![ethermaker](ethermaker.png)|[ethermaker](https://www.github.com/io7m-com/ethermaker)|Ethernet MAC address generator.|
 |![exfilac](exfilac.png)|[exfilac](https://www.github.com/io7m-com/exfilac)|Simple, reliable, automated S3 uploads for Android.|
 |![flail](flail.png)|[flail](https://www.github.com/io7m-com/flail)|DNS server stress testing tool.|
+|![fsbind](fsbind.png)|[fsbind](https://www.github.com/io7m-com/fsbind)|A JSR203 overlay binding filesystem.|
 |![garriga](garriga.png)|[garriga](https://www.github.com/io7m-com/garriga)|AlertManager → Matrix Alert Relay.|
 |![gatwick](gatwick.png)|[gatwick](https://www.github.com/io7m-com/gatwick)|BOSS GT-1000 controller.|
 |![genevan](genevan.png)|[genevan](https://www.github.com/io7m-com/genevan)|Generic protocol negotiation algorithm.|
