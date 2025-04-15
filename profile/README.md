@@ -121,6 +121,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![servitor](servitor.png)|[servitor](https://www.github.com/io7m-com/servitor)|Static podman/systemd service generator.|
 |![sigiltron](sigiltron.png)|[sigiltron](https://www.github.com/io7m-com/sigiltron)|Mysterious symbol generator.|
 |![smfj](smfj.png)|[smfj](https://www.github.com/io7m-com/smfj)|Minimalist sequential mesh format.|
+|![stonesignal](stonesignal.png)|[stonesignal](https://www.github.com/io7m/stonesignal)|A device location server.|
 |![streamtime](streamtime.png)|[streamtime](https://www.github.com/io7m-com/streamtime)|Input/output stream progress tracking.|
 |![string-template-maven-plugin](string-template-maven-plugin.png)|[string-template-maven-plugin](https://www.github.com/io7m-com/string-template-maven-plugin)|String Template Maven plugin.|
 |![sunburst](sunburst.png)|[sunburst](https://www.github.com/io7m-com/sunburst)|Asset package system.|
