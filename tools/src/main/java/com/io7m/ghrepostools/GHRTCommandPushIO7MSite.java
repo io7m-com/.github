@@ -101,7 +101,7 @@ public final class GHRTCommandPushIO7MSite implements QCommandType
       "--chmod=ugo-rwx,Dugo+x,ugo+r,u+w",
       "--progress",
       siteDirectory + "/",
-      "www2-int.io7m.com:/var/storage/www/www.io7m.com/software/%s/"
+      "web03.int.io7m.com:/data/www/www.io7m.com/software/%s/"
         .formatted(project)
     );
 
