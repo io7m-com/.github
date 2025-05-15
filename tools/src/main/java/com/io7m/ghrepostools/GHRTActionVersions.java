@@ -41,8 +41,8 @@ public record GHRTActionVersions(
       "4",
       "4",
       "4",
-      "5.4.2",
-      "1.7"
+      "525fcbf8a05e5933b1ef3c7885da8fd1d7231920",
+      "4934294ad0449894bcd1e9f191899d7292469603"
     );
   }
 }

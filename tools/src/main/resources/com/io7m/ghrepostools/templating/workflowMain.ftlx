@@ -18,6 +18,9 @@ on:
     branches: [ master, main, develop, feature/*, release/* ]
 [/#if]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ${imageName}
@@ -78,7 +81,7 @@ jobs:
 
 [#if coverage == "COVERAGE_ENABLED"]
       - name: Coverage
-        uses: codecov/codecov-action@v${actionsCodecovVersion}
+        uses: codecov/codecov-action@${actionsCodecovVersion}
         with:
           token: ${r"${{ secrets.CODECOV_TOKEN }}"}
           files: com.io7m.${projectName}.tests/target/site/jacoco-aggregate/jacoco.xml
@@ -86,7 +89,7 @@ jobs:
 
 [#if deploy == "DEPLOY_ENABLED"]
       - name: Log in to Quay.io.
-        uses: redhat-actions/podman-login@v${actionsPodmanLoginVersion}
+        uses: redhat-actions/podman-login@${actionsPodmanLoginVersion}
         with:
           username: ${r"${{ secrets.QUAY_IO_USERNAME }}"}
           password: ${r"${{ secrets.QUAY_IO_PASSWORD }}"}

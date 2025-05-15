@@ -12,6 +12,9 @@ on:
   push:
     tags: [ com.io7m.${projectName}-* ]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ${imageName}
@@ -35,7 +38,7 @@ jobs:
         run: echo ${r'"${PGP_SIGNING_KEY}" | gpg -v --import'}
 
       - name: Log in to Quay.io.
-        uses: redhat-actions/podman-login@v1.7
+        uses: redhat-actions/podman-login@${actionsPodmanLoginVersion}
         with:
           username: ${r"${{ secrets.QUAY_IO_USERNAME }}"}
           password: ${r"${{ secrets.QUAY_IO_PASSWORD }}"}
