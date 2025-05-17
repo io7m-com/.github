@@ -141,4 +141,5 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![xyloid](xyloid.png)|[xyloid](https://www.github.com/io7m-com/xyloid)|Repackaged xerial sqlite-jdbc binaries.|
 |![zelador](zelador.png)|[zelador](https://www.github.com/io7m-com/zelador)|JUnit 5 cleaning service.|
 |![zeptoblog](zeptoblog.png)|[zeptoblog](https://www.github.com/io7m-com/zeptoblog)|Tiny, modular, static blog generator.|
+|![zugorum](zugorum.png)|[zugorum](https://www.github.com/io7m-com/zugorum)|Liveness checker.|
 
