@@ -30,7 +30,7 @@
     <com.io7m.changelog.version>5.0.0-beta0002</com.io7m.changelog.version>
 
     <!-- Third-party dependencies. -->
-    <jgit.version>6.6.1.202309021850-r</jgit.version>
+    <jgit.version>6.10.1.202505221210-r</jgit.version>
   </properties>
 
   <licenses>
