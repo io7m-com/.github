@@ -107,9 +107,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![minisite](minisite.png)|[minisite](https://www.github.com/io7m-com/minisite)|Tiny software project static site generator.|
 |![miscue](miscue.png)|[miscue](https://www.github.com/io7m-com/miscue)|UI error dialogs.|
 |![montarre](montarre.png)|[montarre](https://www.github.com/io7m-com/montarre)|Application packaging tools.|
-|![northpike](northpike.png)|[northpike](https://www.github.com/io7m-com/northpike)|Continuous integration server.|
 |![northpike.packaging](northpike.packaging.png)|[northpike.packaging](https://www.github.com/io7m-com/northpike.packaging)|Platform-specific packaging for Northpike.|
-|![pallene](pallene.png)|[pallene](https://www.github.com/io7m-com/pallene)|An ultra-minimal single-file static web server.|
 |![peixoto](peixoto.png)|[peixoto](https://www.github.com/io7m-com/peixoto)|Packaged and shaded Amazon S3 SDK.|
 |![percentpass](percentpass.png)|[percentpass](https://www.github.com/io7m-com/percentpass)|Percent-passing extension for JUnit 5 tests.|
 |![primogenitor](primogenitor.png)|[primogenitor](https://www.github.com/io7m-com/primogenitor)|Ancestor POM for io7m projects.|
@@ -119,7 +117,6 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![repetoir](repetoir.png)|[repetoir](https://www.github.com/io7m-com/repetoir)|Service directory.|
 |![scando](scando.png)|[scando](https://www.github.com/io7m-com/scando)|Tiny japicmp command-line wrapper.|
 |![seltzer](seltzer.png)|[seltzer](https://www.github.com/io7m-com/seltzer)|A specification for structured, user-facing error values.|
-|![servitor](servitor.png)|[servitor](https://www.github.com/io7m-com/servitor)|Static podman/systemd service generator.|
 |![sigiltron](sigiltron.png)|[sigiltron](https://www.github.com/io7m-com/sigiltron)|Mysterious symbol generator.|
 |![smfj](smfj.png)|[smfj](https://www.github.com/io7m-com/smfj)|Minimalist sequential mesh format.|
 |![stonesignal](stonesignal.png)|[stonesignal](https://www.github.com/io7m-com/stonesignal)|A device location server.|
@@ -131,7 +128,6 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![tavella](tavella.png)|[tavella](https://www.github.com/io7m-com/tavella)|Podman Java interface.|
 |![timehack6435126](timehack6435126.png)|[timehack6435126](https://www.github.com/io7m-com/timehack6435126)|JVM high-resolution timer bug workaround.|
 |![trasco](trasco.png)|[trasco](https://www.github.com/io7m-com/trasco)|SQL database schema revision system.|
-|![usq](usq.png)|[usq](https://www.github.com/io7m-com/usq)|Unsupervised persistent queues.|
 |![ventrad](ventrad.png)|[ventrad](https://www.github.com/io7m-com/ventrad)|JSON protocol for HTTP endpoint version announcements.|
 |![verdant](verdant.png)|[verdant](https://www.github.com/io7m-com/verdant)|Binary protocol for HTTP endpoint version announcements.|
 |![verona](verona.png)|[verona](https://www.github.com/io7m-com/verona)|Semantic versioning types.|
