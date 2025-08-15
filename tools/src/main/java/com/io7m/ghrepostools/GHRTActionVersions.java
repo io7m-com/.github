@@ -38,10 +38,15 @@ public record GHRTActionVersions(
   public static GHRTActionVersions get()
   {
     return new GHRTActionVersions(
-      "4",
-      "4",
-      "4",
+       /* https://github.com/actions/checkout/releases */
+      "08c6903cd8c0fde910a37f88322edcfb5dd907a8",
+      /* https://github.com/actions/setup-java/releases */
+      "c5195efecf7bdfc987ee8bae7a71cb8b11521c00",
+      /* https://github.com/actions/upload-artifact/releases */
+      "ea165f8d65b6e75b540449e92b4886f43607fa02",
+      /* https://github.com/codecov/codecov-action/releases */
       "18283e04ce6e62d37312384ff67231eb8fd56d24",
+      /* https://github.com/redhat-actions/podman-login/releases */
       "4934294ad0449894bcd1e9f191899d7292469603"
     );
   }
