@@ -18,6 +18,9 @@
 package com.io7m.ghrepostools.templating;
 
 import java.awt.Color;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,6 +36,7 @@ public record GHRTReadmeModel(
   public Map<String, Object> toTemplateHash()
   {
     final var m = new HashMap<String, Object>();
+    m.put("encodedSnapshotURL", this.encodedSnapshotURL());
     m.put("groupNameWithDots", this.groupNameWithDots());
     m.put("artifactNameWithDots", this.artifactNameWithDots());
     m.put("groupNameWithSlashes", this.groupNameWithSlashes());
@@ -40,6 +44,20 @@ public record GHRTReadmeModel(
     m.put("javaVersion", this.javaVersion());
     m.put("javaVersionColor", this.javaVersionColor());
     return m;
+  }
+
+  private String encodedSnapshotURL()
+  {
+    final var baseRepoURI =
+      URI.create("https://central.sonatype.com/repository/maven-snapshots/");
+
+    var repoURI = baseRepoURI;
+    repoURI = repoURI.resolve(this.groupNameWithSlashes + "/");
+    repoURI = repoURI.resolve(this.artifactNameWithDots + "/");
+    repoURI = repoURI.resolve("maven-metadata.xml");
+    repoURI = repoURI.normalize();
+
+    return URLEncoder.encode(repoURI.toString(), StandardCharsets.UTF_8);
   }
 
   private String javaVersionColor()
