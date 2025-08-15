@@ -25,12 +25,12 @@ jobs:
   build:
     runs-on: ${imageName}
     steps:
-      - uses: actions/checkout@v${actionsCheckoutVersion}
+      - uses: actions/checkout@${actionsCheckoutVersion}
         with:
           submodules: true
 
       - name: JDK
-        uses: actions/setup-java@v${actionsSetupJavaVersion}
+        uses: actions/setup-java@${actionsSetupJavaVersion}
         with:
           java-version: ${javaVersion}
           distribution: '${javaDistribution}'
@@ -57,7 +57,7 @@ jobs:
         run: ./.github/workflows/run-with-xvfb.sh mvn --batch-mode --strict-checksums --errors clean verify site
 
       - name: Upload video
-        uses: actions/upload-artifact@v${actionsUploadArtifactVersion}
+        uses: actions/upload-artifact@${actionsUploadArtifactVersion}
         if: ${r"${{ always() }}"}
         with:
           name: test-video
@@ -73,7 +73,7 @@ jobs:
 [/#if]
 
       - name: Upload test logs
-        uses: actions/upload-artifact@v${actionsUploadArtifactVersion}
+        uses: actions/upload-artifact@${actionsUploadArtifactVersion}
         if: always()
         with:
           name: test-logs
