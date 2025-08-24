@@ -30,6 +30,7 @@ import java.io.PrintWriter;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.util.List;
@@ -100,8 +101,20 @@ public final class GHRTCommandReadme implements QCommandType
     final var dotGroup =
       names.groupName().stream().collect(Collectors.joining("."));
 
-    final var javaVersion =
-      GHRTPomJavaVersion.pomJavaVersion(Paths.get("pom.xml"));
+    final String javaVersion;
+
+    final var pomFile =
+      Paths.get("pom.xml");
+    final var gradleFile =
+      Paths.get("gradle.properties");
+
+    if (Files.isRegularFile(pomFile)) {
+      javaVersion = GHRTPomJavaVersion.pomJavaVersion(pomFile);
+    } else if (Files.isRegularFile(gradleFile)) {
+      javaVersion = GHRTGradleJavaVersion.gradleJavaVersion(gradleFile);
+    } else {
+      throw new IllegalStateException("No pom.xml or gradle.properties.");
+    }
 
     templates.readme()
       .process(

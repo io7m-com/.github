@@ -25,9 +25,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Properties;
 
 public final class GHRTProjectNames
 {
@@ -39,28 +42,64 @@ public final class GHRTProjectNames
   public static GHRTProjectName projectName()
     throws Exception
   {
-    final var document = parsePOM();
+    final var pomFile =
+      Paths.get("pom.xml");
+    final var gradleFile =
+      Paths.get("gradle.properties");
 
-    final var pomName =
-      retrieveOne(document, "/project/name")
-        .getTextContent()
-        .trim();
+    if (Files.isRegularFile(pomFile)) {
+      final var document = parsePOM();
 
-    final var groupName =
-      Arrays.stream(retrieveOne(document, "/project/groupId")
-        .getTextContent()
-        .trim()
-        .split("\\."))
-        .toList();
+      final var pomName =
+        retrieveOne(document, "/project/name")
+          .getTextContent()
+          .trim();
 
-    final var shortName =
-      pomName.replaceFirst("com\\.io7m\\.", "");
+      final var groupName =
+        Arrays.stream(
+            retrieveOne(document, "/project/groupId")
+              .getTextContent()
+              .trim()
+              .split("\\."))
+          .toList();
 
-    return new GHRTProjectName(
-      pomName,
-      groupName,
-      shortName
-    );
+      final var shortName =
+        pomName.replaceFirst("com\\.io7m\\.", "");
+
+      return new GHRTProjectName(
+        pomName,
+        groupName,
+        shortName
+      );
+    }
+
+    if (Files.isRegularFile(gradleFile)) {
+      final var properties = new Properties();
+      try (final var stream = Files.newInputStream(gradleFile)) {
+        properties.load(stream);
+      }
+
+      final var pomName =
+        properties.getProperty("POM_NAME");
+
+      final var groupName =
+        Arrays.stream(
+            properties.getProperty("GROUP")
+              .trim()
+              .split("\\."))
+          .toList();
+
+      final var shortName =
+        pomName.replaceFirst("com\\.io7m\\.", "");
+
+      return new GHRTProjectName(
+        pomName,
+        groupName,
+        shortName
+      );
+    }
+
+    throw new IllegalStateException("No pom.xml or gradle.properties file.");
   }
 
   private static List<Element> retrieve(
