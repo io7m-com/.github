@@ -45,7 +45,7 @@ public record GHRTActionVersions(
       /* https://github.com/actions/upload-artifact/releases */
       "ea165f8d65b6e75b540449e92b4886f43607fa02",
       /* https://github.com/codecov/codecov-action/releases */
-      "18283e04ce6e62d37312384ff67231eb8fd56d24",
+      "fdcc8476540edceab3de004e990f80d881c6cc00",
       /* https://github.com/redhat-actions/podman-login/releases */
       "4934294ad0449894bcd1e9f191899d7292469603"
     );
