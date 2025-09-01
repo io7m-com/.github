@@ -19,12 +19,12 @@ jobs:
   build:
     runs-on: ${imageName}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@${actionsCheckoutVersion}
         with:
           submodules: true
 
       - name: JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@${actionsSetupJavaVersion}
         with:
           java-version: ${javaVersion}
           distribution: ${javaDistribution}
