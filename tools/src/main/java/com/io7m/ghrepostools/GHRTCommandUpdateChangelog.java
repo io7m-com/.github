@@ -186,6 +186,7 @@ public final class GHRTCommandUpdateChangelog implements QCommandType
         StandardCopyOption.REPLACE_EXISTING,
         StandardCopyOption.ATOMIC_MOVE
       );
+      LOG.info("Wrote {}", file);
     }
 
     return QCommandStatus.SUCCESS;
@@ -336,6 +337,11 @@ public final class GHRTCommandUpdateChangelog implements QCommandType
 
       final var obj =
         tag.getPeeledObjectId();
+
+      if (obj == null) {
+        continue;
+      }
+
       final var log =
         git.log()
           .add(obj)
