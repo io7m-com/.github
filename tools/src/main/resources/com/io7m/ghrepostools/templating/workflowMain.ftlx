@@ -23,6 +23,7 @@ permissions:
 
 jobs:
   build:
+    name: Build
     runs-on: ${imageName}
     steps:
       - uses: actions/checkout@${actionsCheckoutVersion}
