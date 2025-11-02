@@ -107,7 +107,6 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![minisite](minisite.png)|[minisite](https://www.github.com/io7m-com/minisite)|Tiny software project static site generator.|
 |![miscue](miscue.png)|[miscue](https://www.github.com/io7m-com/miscue)|UI error dialogs.|
 |![montarre](montarre.png)|[montarre](https://www.github.com/io7m-com/montarre)|Application packaging tools.|
-|![northpike.packaging](northpike.packaging.png)|[northpike.packaging](https://www.github.com/io7m-com/northpike.packaging)|Platform-specific packaging for Northpike.|
 |![peixoto](peixoto.png)|[peixoto](https://www.github.com/io7m-com/peixoto)|Packaged and shaded Amazon S3 SDK.|
 |![percentpass](percentpass.png)|[percentpass](https://www.github.com/io7m-com/percentpass)|Percent-passing extension for JUnit 5 tests.|
 |![primogenitor](primogenitor.png)|[primogenitor](https://www.github.com/io7m-com/primogenitor)|Ancestor POM for io7m projects.|
