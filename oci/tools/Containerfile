@@ -1,0 +1,20 @@
+# https://hub.docker.com/r/redhat/ubi10-minimal/tags
+FROM docker.io/redhat/ubi10-minimal:latest
+
+ENV PATH="/ghtools/bin:/root/.local/bin:/root/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ENV GHTOOLS_HOME="/ghtools/bin"
+
+COPY image/ghtools              /ghtools/bin/ghtools
+COPY image/com.io7m.ghtools.jar /ghtools/bin/com.io7m.ghtools.jar
+
+RUN microdnf install -y java-21-openjdk-headless
+
+LABEL "org.opencontainers.image.authors"="Mark Raynsford"
+LABEL "org.opencontainers.image.description"="GitHub tools"
+LABEL "org.opencontainers.image.licenses"="ISC"
+LABEL "org.opencontainers.image.source"="https://www.github.com/io7m-com/.github"
+LABEL "org.opencontainers.image.title"="ghtools"
+LABEL "org.opencontainers.image.url"="https://www.github.com/io7m-com/.github"
+LABEL "org.opencontainers.image.version"="1.0.0"
+
+ENTRYPOINT ["/ghtools/bin/ghtools"]

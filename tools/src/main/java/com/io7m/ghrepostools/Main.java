@@ -68,6 +68,7 @@ public final class Main implements Runnable
     builder.addCommand(new GHRTCommandDependabot());
     builder.addCommand(new GHRTCommandExecuteRelease());
     builder.addCommand(new GHRTCommandGenDepChanges());
+    builder.addCommand(new GHRTCommandMergePRs());
     builder.addCommand(new GHRTCommandPushIO7MSite());
     builder.addCommand(new GHRTCommandReadme());
     builder.addCommand(new GHRTCommandShowDepCommit());
