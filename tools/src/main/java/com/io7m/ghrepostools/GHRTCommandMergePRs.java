@@ -37,6 +37,7 @@ import org.slf4j.MDC;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.time.OffsetDateTime;
@@ -113,6 +114,10 @@ public final class GHRTCommandMergePRs implements QCommandType
   private boolean doMerge;
   private long sleepSeconds;
   private GHRTAuditLog audit;
+  private BigInteger prsNotMergeable = BigInteger.ZERO;
+  private BigInteger prsFailedMerges = BigInteger.ZERO;
+  private BigInteger prsMerged = BigInteger.ZERO;
+  private BigInteger prsSeen = BigInteger.ZERO;
 
   /**
    * Construct a command.
@@ -179,6 +184,10 @@ public final class GHRTCommandMergePRs implements QCommandType
       }
     }
 
+    LOG.info("PRs seen:         {}", this.prsSeen);
+    LOG.info("PRs merged:       {}", this.prsMerged);
+    LOG.info("PRs failed merge: {}", this.prsFailedMerges);
+    LOG.info("PRs not ready:    {}", this.prsNotMergeable);
     return QCommandStatus.SUCCESS;
   }
 
@@ -192,6 +201,8 @@ public final class GHRTCommandMergePRs implements QCommandType
     final var reposName = repository.fullName();
     final var prs = gh.pullRequests(reposName);
     for (final var prSrc : prs) {
+      this.prsSeen = this.prsSeen.add(BigInteger.ONE);
+
       final var pr = gh.pullRequestFull(reposName, prSrc.number());
       MDC.put("PR", pr.number().toString());
 
@@ -216,14 +227,17 @@ public final class GHRTCommandMergePRs implements QCommandType
               )
             ));
 
+            this.prsMerged = this.prsMerged.add(BigInteger.ONE);
             LOG.info("Sleeping {} seconds", this.sleepSeconds);
             TimeUnit.SECONDS.sleep(this.sleepSeconds);
           } catch (final Exception e) {
             LOG.error("Failed to merge: ", e);
+            this.prsFailedMerges = this.prsFailedMerges.add(BigInteger.ONE);
           }
         }
       } else {
         LOG.warn("Failed one or more merge criteria");
+        this.prsNotMergeable = this.prsNotMergeable.add(BigInteger.ONE);
       }
     }
   }
