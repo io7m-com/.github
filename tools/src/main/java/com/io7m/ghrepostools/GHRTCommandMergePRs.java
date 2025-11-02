@@ -184,6 +184,7 @@ public final class GHRTCommandMergePRs implements QCommandType
       }
     }
 
+    MDC.clear();
     LOG.info("PRs seen:         {}", this.prsSeen);
     LOG.info("PRs merged:       {}", this.prsMerged);
     LOG.info("PRs failed merge: {}", this.prsFailedMerges);
