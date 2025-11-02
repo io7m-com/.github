@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.regex.Pattern;
 
 public final class GHub implements AutoCloseable
@@ -254,6 +255,7 @@ public final class GHub implements AutoCloseable
 
   public GPullRequestMergeResponse pullRequestMerge(
     final String reposName,
+    final UUID auditId,
     final GPullRequest pr)
     throws IOException, InterruptedException
   {
@@ -263,8 +265,11 @@ public final class GHub implements AutoCloseable
           .formatted(reposName, pr.number())
       );
 
-    final var data =
-      this.json.createObjectNode();
+    final var data = this.json.createObjectNode();
+    data.put(
+      "commit_message",
+      "Automatically merged by ghtools. Audit ID: " + auditId
+    );
 
     return this.doPUT(
       target,

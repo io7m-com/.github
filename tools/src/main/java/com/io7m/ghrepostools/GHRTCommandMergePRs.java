@@ -47,6 +47,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -200,11 +201,13 @@ public final class GHRTCommandMergePRs implements QCommandType
           LOG.info("Merging");
 
           try {
-            gh.pullRequestMerge(reposName, pr);
+            final var auditId = UUID.randomUUID();
+            gh.pullRequestMerge(reposName, auditId, pr);
 
             LOG.info("Merged");
             this.audit.write(new GHRTAuditLog.AuditEvent(
               "Merged",
+              auditId,
               OffsetDateTime.now(UTC),
               Map.ofEntries(
                 Map.entry("Repository", reposName),

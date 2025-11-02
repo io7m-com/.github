@@ -27,6 +27,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.OffsetDateTime;
 import java.util.Map;
+import java.util.UUID;
 
 import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;
@@ -77,6 +78,8 @@ public final class GHRTAuditLog
   public record AuditEvent(
     @JsonProperty(value = "Type", required = true)
     String type,
+    @JsonProperty(value = "ID", required = true)
+    UUID id,
     @JsonProperty(value = "Time", required = true)
     OffsetDateTime time,
     @JsonProperty(value = "Data", required = true)
