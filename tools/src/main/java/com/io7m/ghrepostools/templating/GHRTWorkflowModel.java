@@ -33,6 +33,7 @@ public record GHRTWorkflowModel(
   GHRTActionVersions actionVersions,
   String workflowProfileName,
   String workflowName,
+  String platformName,
   String imageName,
   String javaVersion,
   String javaDistribution,
@@ -64,6 +65,7 @@ public record GHRTWorkflowModel(
     m.put("coverage", this.coverage());
     m.put("deploy", this.deploy());
     m.put("imageName", this.imageName());
+    m.put("platformName", this.platformName());
     m.put("javaDistribution", this.javaDistribution());
     m.put("javaVersion", this.javaVersion());
     m.put("projectName", this.projectName());

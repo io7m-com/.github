@@ -45,10 +45,21 @@ jobs:
         run: java .github/workflows/Tools.java ShowProjectIsSnapshot pom.xml >> "$GITHUB_OUTPUT"
 
 [#if vulkanEnabled == "VULKAN_ENABLED"]
-      - name: Configure Vulkan
-        uses: NcStudios/VulkanCI@1a5db3ebde578c503b1d7f8df007e42a7367224c
+      - name: Install Vulkan SDK
+        uses: humbletim/install-vulkan-sdk@30ba978f977e81b72d091fc8888feb1fb26f9aff
         with:
-          sdkVersion: 1.4.309.0
+          version: 1.4.328.1
+          cache: true
+
+  [#if platformName == "LINUX"]
+      - name: Download RenderDoc
+        run: .github/workflows/renderdoc.sh
+      - name: Install RenderDoc
+        run: sudo mv librenderdoc.so /usr/lib/librenderdoc.so
+  [#elseif platformName == "WINDOWS"]
+      - name: Install RenderDoc
+        run: .\.github\workflows\renderdoc.ps1
+  [/#if]
 [/#if]
 
 [#if videoRecordingEnabled == "VIDEO_RECORDING_ENABLED"]

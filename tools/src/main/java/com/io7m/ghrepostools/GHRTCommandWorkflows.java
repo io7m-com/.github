@@ -152,6 +152,7 @@ public final class GHRTCommandWorkflows implements QCommandType
               GHRTActionVersions.get(),
               workflowProfile.name(),
               workflow.mainName(),
+              workflow.platform().name(),
               workflow.platform().imageName(),
               Integer.toUnsignedString(workflow.jdkVersion()),
               workflow.jdkDistribution().lowerName(),
@@ -199,6 +200,7 @@ public final class GHRTCommandWorkflows implements QCommandType
               GHRTActionVersions.get(),
               workflowProfile.name(),
               workflow.prName(),
+              workflow.platform().name(),
               workflow.platform().imageName(),
               Integer.toUnsignedString(workflow.jdkVersion()),
               workflow.jdkDistribution().lowerName(),
@@ -236,6 +238,7 @@ public final class GHRTCommandWorkflows implements QCommandType
             GHRTActionVersions.get(),
             GHRTWorkflowProfile.core().name(),
             "deploy.linux.temurin.lts",
+            GHRTPlatform.LINUX.name(),
             GHRTPlatform.LINUX.imageName(),
             Integer.toUnsignedString(GHRTWorkflows.JDK_LTS),
             GHRTJDKDistribution.TEMURIN.lowerName(),
@@ -259,6 +262,8 @@ public final class GHRTCommandWorkflows implements QCommandType
     this.writeFileResource("deploy-release.sh", EXECUTABLE);
     this.writeFileResource("deploy-snapshot.sh", EXECUTABLE);
     this.writeFileResource("run-with-xvfb.sh", EXECUTABLE);
+    this.writeFileResource("renderdoc.sh", EXECUTABLE);
+    this.writeFileResource("renderdoc.ps1", EXECUTABLE);
     this.writeFileResource("wallpaper.png", NOT_EXECUTABLE);
     return QCommandStatus.SUCCESS;
   }

@@ -112,7 +112,6 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![primogenitor](primogenitor.png)|[primogenitor](https://www.github.com/io7m-com/primogenitor)|Ancestor POM for io7m projects.|
 |![quarrel](quarrel.png)|[quarrel](https://www.github.com/io7m-com/quarrel)|Strict, opinionated, typed command-line argument parser.|
 |![quixote](quixote.png)|[quixote](https://www.github.com/io7m-com/quixote)|Tiny embedded web server for unit testing.|
-|![renderdoc_jffm](renderdoc_jffm.png)|[renderdoc_jffm](https://www.github.com/io7m-com/renderdoc_jffm)|RenderDoc FFM API.|
 |![repetoir](repetoir.png)|[repetoir](https://www.github.com/io7m-com/repetoir)|Service directory.|
 |![scando](scando.png)|[scando](https://www.github.com/io7m-com/scando)|Tiny japicmp command-line wrapper.|
 |![seltzer](seltzer.png)|[seltzer](https://www.github.com/io7m-com/seltzer)|A specification for structured, user-facing error values.|
