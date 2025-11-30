@@ -378,16 +378,6 @@ public final class GHRTCommandExecuteRelease implements QCommandType
       releaseBranch
     );
 
-    LOG.info("Copying site data...");
-
-    executeProgram(
-      Paths.get("."),
-      "rsync",
-      "-av",
-      projectDirectory.resolve("target").resolve("minisite") + "/",
-      siteDirectory + "/"
-    );
-
     LOG.info("You should now: ");
     LOG.info("  cd {} && git push --tags", projectDirectory);
     LOG.info("  cd {} && git push --all", projectDirectory);
