@@ -17,6 +17,8 @@
 
 package com.io7m.ghrepostools;
 
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.io7m.ghrepostools.opam.OPAMFile;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -26,11 +28,13 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 public final class GHRTProjectNames
 {
@@ -137,5 +141,28 @@ public final class GHRTProjectNames
     final var documentBuilders = DocumentBuilderFactory.newInstance();
     final var documentBuilder = documentBuilders.newDocumentBuilder();
     return documentBuilder.parse(new File("pom.xml"));
+  }
+
+  private static boolean isOpamFile(
+    final Path file)
+  {
+    return Files.isRegularFile(file) && file.toString().endsWith(".opam.json");
+  }
+
+  public static String projectOpamName()
+    throws Exception
+  {
+    try (final var stream = Files.list(Paths.get(""))) {
+      final var file =
+        stream.filter(GHRTProjectNames::isOpamFile)
+          .findFirst()
+          .orElseThrow();
+      final var mapper =
+        JsonMapper.builder()
+          .build();
+      final var opamFile =
+        mapper.readValue(file.toFile(), OPAMFile.class);
+      return opamFile.name();
+    }
   }
 }

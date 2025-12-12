@@ -96,10 +96,17 @@ public final class GHRTTemplateService
     );
   }
 
+  public GHRTTemplateType<GHRTReadmeOpamModel> readmeOpam()
+  {
+    return new GenericTemplate<>(
+      this.findTemplate("readmeOpam")
+    );
+  }
+
   @Override
   public String toString()
   {
-    return "[IdFMTemplateService 0x%s]"
+    return "[GHRTTemplateService 0x%s]"
       .formatted(Long.toUnsignedString(this.hashCode(), 16));
   }
 

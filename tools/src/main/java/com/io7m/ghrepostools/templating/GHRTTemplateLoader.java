@@ -78,6 +78,7 @@ public final class GHRTTemplateLoader implements TemplateLoader
   private static final Set<String> TEMPLATES = Set.of(
     "deployMain",
     "readme",
+    "readmeOpam",
     "workflowMain",
     "workflowReduced"
   );

@@ -1,0 +1,5 @@
+[#ftl output_format="plainText"]
+${shortName}
+===
+
+![${shortName}](./src/site/resources/${shortName}.jpg?raw=true)

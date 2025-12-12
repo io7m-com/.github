@@ -18,6 +18,7 @@
 package com.io7m.ghrepostools;
 
 import com.io7m.ghrepostools.templating.GHRTReadmeModel;
+import com.io7m.ghrepostools.templating.GHRTReadmeOpamModel;
 import com.io7m.ghrepostools.templating.GHRTTemplateService;
 import com.io7m.quarrel.core.QCommandContextType;
 import com.io7m.quarrel.core.QCommandMetadata;
@@ -25,17 +26,17 @@ import com.io7m.quarrel.core.QCommandStatus;
 import com.io7m.quarrel.core.QCommandType;
 import com.io7m.quarrel.core.QParameterNamedType;
 import com.io7m.quarrel.core.QStringType;
+import freemarker.template.TemplateException;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URI;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.MessageFormat;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 public final class GHRTCommandReadme implements QCommandType
@@ -75,31 +76,47 @@ public final class GHRTCommandReadme implements QCommandType
     );
   }
 
-  @Override
-  public List<QParameterNamedType<?>> onListNamedParameters()
+  private static boolean isRocqProject()
+    throws IOException
   {
-    return List.of();
+    try (final var stream = Files.list(Paths.get(""))) {
+      return stream.anyMatch(GHRTCommandReadme::isOpamFile);
+    }
   }
 
-  @Override
-  public QCommandStatus onExecute(
-    final QCommandContextType context)
+  private static boolean isOpamFile(
+    final Path file)
+  {
+    return Files.isRegularFile(file) && file.toString().endsWith(".opam.json");
+  }
+
+  private static boolean isJavaProject()
+  {
+    final var pomFile =
+      Paths.get("pom.xml");
+    final var gradleFile =
+      Paths.get("gradle.properties");
+
+    if (Files.isRegularFile(pomFile)) {
+      return true;
+    }
+    if (Files.isRegularFile(gradleFile)) {
+      return true;
+    }
+    return false;
+  }
+
+  private static void processJavaProject(
+    final GHRTTemplateService templates)
     throws Exception
   {
-    final var templates =
-      GHRTTemplateService.create();
     final var names =
       GHRTProjectNames.projectName();
 
-    final var resources =
-      GHRTStrings.ofXMLResource(
-        GHRTCommandReadme.class,
-        "/com/io7m/ghrepostools/Strings.xml");
-
     final var slashGroup =
-      names.groupName().stream().collect(Collectors.joining("/"));
+      String.join("/", names.groupName());
     final var dotGroup =
-      names.groupName().stream().collect(Collectors.joining("."));
+      String.join(".", names.groupName());
 
     final String javaVersion;
 
@@ -151,6 +168,41 @@ public final class GHRTCommandReadme implements QCommandType
       );
 
       System.out.println(row);
+    }
+  }
+
+  private static void processRocqProject(
+    final GHRTTemplateService templates)
+    throws Exception
+  {
+    final var name =
+      GHRTProjectNames.projectOpamName();
+
+    templates.readmeOpam()
+      .process(
+        new GHRTReadmeOpamModel(name),
+        new PrintWriter(System.out, true, StandardCharsets.UTF_8)
+      );
+  }
+
+  @Override
+  public List<QParameterNamedType<?>> onListNamedParameters()
+  {
+    return List.of();
+  }
+
+  @Override
+  public QCommandStatus onExecute(
+    final QCommandContextType context)
+    throws Exception
+  {
+    final var templates =
+      GHRTTemplateService.create();
+
+    if (isJavaProject()) {
+      processJavaProject(templates);
+    } else if (isRocqProject()) {
+      processRocqProject(templates);
     }
 
     final var extra = Paths.get("README.in");
