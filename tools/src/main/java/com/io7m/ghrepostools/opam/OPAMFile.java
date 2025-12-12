@@ -49,6 +49,8 @@ public record OPAMFile(
   String io7mDocumentation,
   @JsonProperty(value = "depends")
   List<OPAMDependency> depends,
+  @JsonProperty(value = "build")
+  List<List<String>> build,
   @JsonProperty(value = "install")
   List<List<String>> install)
 {

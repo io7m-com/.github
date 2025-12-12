@@ -113,6 +113,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![quarrel](quarrel.png)|[quarrel](https://www.github.com/io7m-com/quarrel)|Strict, opinionated, typed command-line argument parser.|
 |![quixote](quixote.png)|[quixote](https://www.github.com/io7m-com/quixote)|Tiny embedded web server for unit testing.|
 |![repetoir](repetoir.png)|[repetoir](https://www.github.com/io7m-com/repetoir)|Service directory.|
+|![roctetorder](roctetorder.png)|[roctetorder](https://www.github.com/io7m-com/roctetorder)|Octet order theorems.|
 |![scando](scando.png)|[scando](https://www.github.com/io7m-com/scando)|Tiny japicmp command-line wrapper.|
 |![seltzer](seltzer.png)|[seltzer](https://www.github.com/io7m-com/seltzer)|A specification for structured, user-facing error values.|
 |![sigiltron](sigiltron.png)|[sigiltron](https://www.github.com/io7m-com/sigiltron)|Mysterious symbol generator.|
@@ -120,6 +121,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![stonesignal](stonesignal.png)|[stonesignal](https://www.github.com/io7m-com/stonesignal)|A device location server.|
 |![streamtime](streamtime.png)|[streamtime](https://www.github.com/io7m-com/streamtime)|Input/output stream progress tracking.|
 |![string-template-maven-plugin](string-template-maven-plugin.png)|[string-template-maven-plugin](https://www.github.com/io7m-com/string-template-maven-plugin)|String Template Maven plugin.|
+|![sumjack](sumjack.png)|[sumjack](https://www.github.com/io7m-com/sumjack)|JSON schema generator.|
 |![sunburst](sunburst.png)|[sunburst](https://www.github.com/io7m-com/sunburst)|Asset package system.|
 |![tabla](tabla.png)|[tabla](https://www.github.com/io7m-com/tabla)|Plain text table rendering.|
 |![taskrecorder](taskrecorder.png)|[taskrecorder](https://www.github.com/io7m-com/taskrecorder)|UI task recorder.|

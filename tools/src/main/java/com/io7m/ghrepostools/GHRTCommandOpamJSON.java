@@ -150,6 +150,24 @@ public final class GHRTCommandOpamJSON implements QCommandType
       writer.newLine();
 
       writer.append(
+        "build: [%n".formatted()
+      );
+      for (final var exec : opam.build()) {
+        writer.append("  [");
+        writer.append(
+          exec.stream()
+            .map("\"%s\""::formatted)
+            .collect(Collectors.joining(" "))
+        );
+        writer.append("]");
+        writer.newLine();
+      }
+      writer.append(
+        "]%n".formatted()
+      );
+      writer.newLine();
+
+      writer.append(
         "install: [%n".formatted()
       );
       for (final var exec : opam.install()) {
