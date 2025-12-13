@@ -112,6 +112,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![primogenitor](primogenitor.png)|[primogenitor](https://www.github.com/io7m-com/primogenitor)|Ancestor POM for io7m projects.|
 |![quarrel](quarrel.png)|[quarrel](https://www.github.com/io7m-com/quarrel)|Strict, opinionated, typed command-line argument parser.|
 |![quixote](quixote.png)|[quixote](https://www.github.com/io7m-com/quixote)|Tiny embedded web server for unit testing.|
+|![rentomos](rentomos.png)|[rentomos](https://www.github.com/io7m-com/rentomos)|Entomos specification .|
 |![repetoir](repetoir.png)|[repetoir](https://www.github.com/io7m-com/repetoir)|Service directory.|
 |![roctetorder](roctetorder.png)|[roctetorder](https://www.github.com/io7m-com/roctetorder)|Octet order theorems.|
 |![scando](scando.png)|[scando](https://www.github.com/io7m-com/scando)|Tiny japicmp command-line wrapper.|
