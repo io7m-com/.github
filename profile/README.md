@@ -38,6 +38,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![ethermaker](ethermaker.png)|[ethermaker](https://www.github.com/io7m-com/ethermaker)|Ethernet MAC address generator.|
 |![exfilac](exfilac.png)|[exfilac](https://www.github.com/io7m-com/exfilac)|Simple, reliable, automated S3 uploads for Android.|
 |![flail](flail.png)|[flail](https://www.github.com/io7m-com/flail)|DNS server stress testing tool.|
+|![flannel](flannel.png)|[flannel](https://www.github.com/io7m-com/flannel)|Pure Java FLAC.|
 |![fsbind](fsbind.png)|[fsbind](https://www.github.com/io7m-com/fsbind)|A JSR203 overlay binding filesystem.|
 |![garriga](garriga.png)|[garriga](https://www.github.com/io7m-com/garriga)|AlertManager → Matrix Alert Relay.|
 |![gatwick](gatwick.png)|[gatwick](https://www.github.com/io7m-com/gatwick)|BOSS GT-1000 controller.|
@@ -112,7 +113,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![primogenitor](primogenitor.png)|[primogenitor](https://www.github.com/io7m-com/primogenitor)|Ancestor POM for io7m projects.|
 |![quarrel](quarrel.png)|[quarrel](https://www.github.com/io7m-com/quarrel)|Strict, opinionated, typed command-line argument parser.|
 |![quixote](quixote.png)|[quixote](https://www.github.com/io7m-com/quixote)|Tiny embedded web server for unit testing.|
-|![rentomos](rentomos.png)|[rentomos](https://www.github.com/io7m-com/rentomos)|Entomos specification .|
+|![rentomos](rentomos.png)|[rentomos](https://www.github.com/io7m-com/rentomos)|Entomos specification.|
 |![repetoir](repetoir.png)|[repetoir](https://www.github.com/io7m-com/repetoir)|Service directory.|
 |![roctetorder](roctetorder.png)|[roctetorder](https://www.github.com/io7m-com/roctetorder)|Octet order theorems.|
 |![scando](scando.png)|[scando](https://www.github.com/io7m-com/scando)|Tiny japicmp command-line wrapper.|
