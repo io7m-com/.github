@@ -12,6 +12,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![adelaide](adelaide.png)|[adelaide](https://www.github.com/io7m-com/adelaide)|Better ActiveMQ/Artemis OCI images.|
 |![anethum](anethum.png)|[anethum](https://www.github.com/io7m-com/anethum)|Generic parser API specification.|
 |![aradine](aradine.png)|[aradine](https://www.github.com/io7m-com/aradine)|Modular programmable synthesis.|
+|![aurantedit](aurantedit.png)|[aurantedit](https://www.github.com/io7m-com/aurantedit)|Aurantium sample map editor.|
 |![aurantium](aurantium.png)|[aurantium](https://www.github.com/io7m-com/aurantium)|Aurantium audio sample map format.|
 |![bishopsgate](bishopsgate.png)|[bishopsgate](https://www.github.com/io7m-com/bishopsgate)|JMS → Matrix relay.|
 |![blackthorne](blackthorne.png)|[blackthorne](https://www.github.com/io7m-com/blackthorne)|Functional streaming XML data extraction.|
