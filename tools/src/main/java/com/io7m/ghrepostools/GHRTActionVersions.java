@@ -39,13 +39,13 @@ public record GHRTActionVersions(
   {
     return new GHRTActionVersions(
        /* https://github.com/actions/checkout/releases */
-      "08c6903cd8c0fde910a37f88322edcfb5dd907a8",
+      "8e8c483db84b4bee98b60c0593521ed34d9990e8",
       /* https://github.com/actions/setup-java/releases */
-      "dded0888837ed1f317902acf8a20df0ad188d165",
+      "f2beeb24e141e01a676f977032f5a29d81c9e27e",
       /* https://github.com/actions/upload-artifact/releases */
-      "330a01c490aca151604b8cf639adc76d48f6c5d4",
+      "b7c566a772e6b6bfb58ed0dc250532a479d7789f",
       /* https://github.com/codecov/codecov-action/releases */
-      "5a1091511ad55cbe89839c7260b706298ca349f7",
+      "671740ac38dd9b0130fbe1cec585b89eea48d3de",
       /* https://github.com/redhat-actions/podman-login/releases */
       "4934294ad0449894bcd1e9f191899d7292469603"
     );
