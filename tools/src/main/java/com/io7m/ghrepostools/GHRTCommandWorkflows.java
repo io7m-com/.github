@@ -263,7 +263,6 @@ public final class GHRTCommandWorkflows implements QCommandType
     this.writeFileResource("deploy-snapshot.sh", EXECUTABLE);
     this.writeFileResource("run-with-xvfb.sh", EXECUTABLE);
     this.writeFileResource("renderdoc.sh", EXECUTABLE);
-    this.writeFileResource("renderdoc.ps1", EXECUTABLE);
     this.writeFileResource("wallpaper.png", NOT_EXECUTABLE);
     return QCommandStatus.SUCCESS;
   }

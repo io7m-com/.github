@@ -21,6 +21,14 @@ on:
 permissions:
   contents: read
 
+[#if platformName == "LINUX"]
+env:
+  NO_VULKAN_DEVICE_TESTS: false
+[#else]
+env:
+  NO_VULKAN_DEVICE_TESTS: true
+[/#if]
+
 jobs:
   build:
     name: Build
@@ -45,20 +53,15 @@ jobs:
         run: java .github/workflows/Tools.java ShowProjectIsSnapshot pom.xml >> "$GITHUB_OUTPUT"
 
 [#if vulkanEnabled == "VULKAN_ENABLED"]
-      - name: Install Vulkan SDK
-        uses: humbletim/install-vulkan-sdk@e7d6e7b937bde4503c7ba5c9584c9dc68f44c4b8
-        with:
-          version: 1.4.341.1
-          cache: true
-
   [#if platformName == "LINUX"]
+      - name: Install Vulkan packages
+        run: sudo apt install mesa-vulkan-drivers vulkan-tools vulkan-validationlayers
+      - name: Verify Vulkan
+        run: vulkaninfo
       - name: Download RenderDoc
         run: .github/workflows/renderdoc.sh
       - name: Install RenderDoc
         run: sudo mv librenderdoc.so /usr/lib/librenderdoc.so
-  [#elseif platformName == "WINDOWS"]
-      - name: Install RenderDoc
-        run: .\.github\workflows\renderdoc.ps1
   [/#if]
 [/#if]
 
