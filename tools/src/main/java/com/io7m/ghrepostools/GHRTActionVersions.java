@@ -39,9 +39,9 @@ public record GHRTActionVersions(
   {
     return new GHRTActionVersions(
        /* https://github.com/actions/checkout/releases */
-      "8e8c483db84b4bee98b60c0593521ed34d9990e8",
+      "de0fac2e4500dabe0009e67214ff5f5447ce83dd",
       /* https://github.com/actions/setup-java/releases */
-      "f2beeb24e141e01a676f977032f5a29d81c9e27e",
+      "be666c2fcd27ec809703dec50e508c2fdc7f6654",
       /* https://github.com/actions/upload-artifact/releases */
       "b7c566a772e6b6bfb58ed0dc250532a479d7789f",
       /* https://github.com/codecov/codecov-action/releases */
