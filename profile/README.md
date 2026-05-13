@@ -34,6 +34,7 @@ File organization-wide issues at the [organization](https://www.github.com/io7m-
 |![darco](darco.png)|[darco](https://www.github.com/io7m-com/darco)|Minimalist, opinionated database access.|
 |![digal](digal.png)|[digal](https://www.github.com/io7m-com/digal)|Java FX rotary dials.|
 |![dixmont](dixmont.png)|[dixmont](https://www.github.com/io7m-com/dixmont)|Dixmont Jackson extensions.|
+|![ejdt_format_rules](ejdt_format_rules.png)|[ejdt_format_rules](https://www.github.com/io7m-com/ejdt_format_rules)|Eclipse JDT formatter rules for all io7m projects.|
 |![entomos](entomos.png)|[entomos](https://www.github.com/io7m-com/entomos)|Sectional binary file format library.|
 |![ervilla](ervilla.png)|[ervilla](https://www.github.com/io7m-com/ervilla)|JUnit 5 Podman container creation.|
 |![ethermaker](ethermaker.png)|[ethermaker](https://www.github.com/io7m-com/ethermaker)|Ethernet MAC address generator.|
