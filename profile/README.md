@@ -1,8 +1,11 @@
 ![io7m.com](readme.jpg?raw=true)
 
-### Issues
+### Relocation
 
-File organization-wide issues at the [organization](https://www.github.com/io7m-com/.github) repository.
+This organization is moving to [Codeberg](https://codeberg.org/io7m-com).
+
+All repositories have been archived and are in the process of being migrated
+to the new host.
 
 ### Projects
 

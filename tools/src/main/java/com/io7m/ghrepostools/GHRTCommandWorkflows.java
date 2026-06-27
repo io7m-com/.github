@@ -49,6 +49,7 @@ public final class GHRTCommandWorkflows implements QCommandType
 {
   private static final Logger LOG =
     LoggerFactory.getLogger(GHRTCommandWorkflows.class);
+
   public static final OpenOption[] FILE_WRITE_OPTIONS = {
     WRITE, TRUNCATE_EXISTING, CREATE
   };
